@@ -1,39 +1,53 @@
 package pkgPirolt;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
+
+import com.sun.istack.internal.logging.Logger;
 
 import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
 import pkgUtil.Product;
-import pkgUtil.exception.ParameterNotFoundException;
 
 @ManagedBean
 @SessionScoped
-public class Cd {
-	@ManagedProperty(value = "database")
-	private Database database;
+public class Cd implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@ManagedProperty(value="#{database}")
+	private Database database = null;
+	
+	@ManagedProperty(value="#{olympusRestClient}")
+	private OlympusRestClient olympusRestClient = null;
+	
+	public OlympusRestClient getOlympusRestClient() {
+		return olympusRestClient;
+	}
+
+	public void setOlympusRestClient(OlympusRestClient olympusRestClient) {
+		this.olympusRestClient = olympusRestClient;
+	}
+
 	private ArrayList<Product> products;
 	
-	public void fillProducts() {
-		ServletContext context = (ServletContext) FacesContext
-			    .getCurrentInstance().getExternalContext().getContext();
-		try {
-			OlympusRestClient orc = new OlympusRestClient(context);
-			this.products = orc.getLatestProducts("CD");
-		} catch (ParameterNotFoundException e) {
-			Logger.getLogger(Cd.class.getName()).log(Level.SEVERE,"The OlympusRestClient could not find"
-					+ " the restServer-parameter in your context.xml",e);
-		}
+	public Cd() {
 		
+	}
+	
+	public void fillProducts() {
+		Logger.getLogger(Cd.class).info("In Fill Products");
+		System.out.println("In Fill Products mit syso");
+		this.products = this.olympusRestClient.getLatestProducts("CD");
+		Logger.getLogger(Cd.class).info("products: " + this.products.size());
+		System.out.println("products: " + this.products.size());
 	}
 
 	public Database getDatabase() {
