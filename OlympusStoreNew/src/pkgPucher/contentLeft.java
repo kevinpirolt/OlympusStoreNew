@@ -1,11 +1,14 @@
 package pkgPucher;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
+
+import pkgData.Database;
 
 @ManagedBean
 @SessionScoped
@@ -16,9 +19,8 @@ public class contentLeft implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	//@ManagedProperty(value="#{database}")
-	
-	//private Database database = null;
+	@ManagedProperty(value="#{database}")
+	private Database database = null;
 	
 	private String name = "";
 	private String password = "";
@@ -71,22 +73,47 @@ public class contentLeft implements Serializable{
 		this.visibilityloggedin = visibilityloggedin;
 	}
 	
+	public Database getDatabase() {
+		return database;
+	}
+
+	public void setDatabase(Database database) {
+		this.database = database;
+	}
+	
 	//Getter & Setter
 
 	
 	
-	public void checkLogin() {
+	public String checkLogin() {
 		
+		boolean isCorrect = false;
 		System.out.println(this.getName() + ";" + this.getPassword());
-		this.setVisibilityform("display:none;");
-		this.setVisibilityloggedin("");
+		try {
+			
+			isCorrect = this.database.isPasswordCorrect(this.getName(), this.getPassword());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(isCorrect) {
+			this.setVisibilityform("display:none;");
+			this.setVisibilityloggedin("");
+		}
+		
+		return "contentLeft.jsf";
 		
 	}
 	
-	public void logOut() {
+	public String logOut() {
 		
+		this.setName("");
+		this.setPassword("");
 		this.setVisibilityform("");
 		this.setVisibilityloggedin("display:none;");
+		
+		return "contentLeft.jsf";
 		
 	}
 	
