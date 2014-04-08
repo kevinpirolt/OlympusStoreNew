@@ -2,6 +2,8 @@ package pkgPucher;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -96,14 +98,27 @@ public class signin implements Serializable{
 	
 	public String createUser() {
 		
-		try {
-			
-			this.database.createUser(this.getName(), this.getAddress(), this.getPicture(), this.getBirthdate(), this.getEmail(), this.getPassword());
+		boolean dateok = false;
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/DD");
 		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		try {
+			sdf.parse(this.getBirthdate());
+			dateok = true;
+		} catch (ParseException e1) {
+			e1.printStackTrace();
 		}
+		
+		if(dateok) {
+			try {
+				
+				this.database.createUser(this.getName(), this.getAddress(), this.getPicture(), this.getBirthdate(), this.getEmail(), this.getPassword());
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}	
 		
 		return "signin.jsf";
 		

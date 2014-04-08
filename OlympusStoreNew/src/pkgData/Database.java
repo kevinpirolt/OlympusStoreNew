@@ -91,7 +91,7 @@ public class Database implements Serializable
 	public void createUser(String username, String adress, String url,String birthdate,String email,String pw ) throws SQLException
 	{
 		this.Connect();
-		PreparedStatement stmt=conn.prepareStatement("insert into users values(seq_users.NEXTVAL,?,?,?,?,?,?,?)");
+		PreparedStatement stmt=conn.prepareStatement("insert into users values(seq_users.NEXTVAL,?,?,?,to_date(?,'YYYY/MM/DD'),?,?,?)");
 
 		stmt.setString(1, username);
 		stmt.setString(2, adress);

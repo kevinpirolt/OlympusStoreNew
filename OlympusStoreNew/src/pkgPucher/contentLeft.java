@@ -27,6 +27,7 @@ public class contentLeft implements Serializable{
 	private int productsInCart = 0;
 	private String visibilityform = "";
 	private String visibilityloggedin = "display:none;";
+	private User user = null;
 
 	public contentLeft() {
 	}
@@ -80,6 +81,15 @@ public class contentLeft implements Serializable{
 	public void setDatabase(Database database) {
 		this.database = database;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	
 	//Getter & Setter
 
