@@ -75,7 +75,7 @@ public class Database implements Serializable
 	 */
 	public boolean isPasswordCorrect(String name, String passwd) throws SQLException {
 		this.Connect();
-		String selectCount = "SELECT count(*) as cnt FROM users1 WHERE username=? AND passwort=?";
+		String selectCount = "SELECT count(*) as cnt FROM users WHERE username=? AND passwort=?";
 		PreparedStatement stmt = conn.prepareStatement(selectCount,ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
 		stmt.setString(1, name);
 		stmt.setString(2, passwd);
