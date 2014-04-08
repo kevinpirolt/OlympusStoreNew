@@ -13,6 +13,6 @@
 		maxWait="-1"
 	/>
 	
-	<Parameter />
+	<Parameter name="restServer" value="http://localhost:8080/OlympusStoreRest/" override="false" />
 	
 </Context>

@@ -53,7 +53,7 @@ public class OlympusRestClient {
 	//*********************************************************************************************
 	private String getUriFromContext(ServletContext context) {
 		//TODO Namen des Parameters eintragen.
-		return context.getInitParameter("");
+		return context.getInitParameter("restServer");
 	}
 
 	private void initComponents() {
