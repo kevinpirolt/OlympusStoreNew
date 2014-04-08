@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import pkgData.Database;
+import pkgData.User;
 
 @ManagedBean
 @SessionScoped

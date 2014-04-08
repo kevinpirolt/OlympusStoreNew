@@ -1,4 +1,4 @@
-package pkgPucher;
+package pkgData;
 
 public class User {
 	
