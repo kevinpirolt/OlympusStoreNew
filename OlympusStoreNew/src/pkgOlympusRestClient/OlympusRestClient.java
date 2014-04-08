@@ -36,6 +36,20 @@ public class OlympusRestClient {
 				.accept(MediaType.TEXT_XML).get(ProductList.class);
 		return products.getProducts();
 	}
+	
+	public ArrayList<Product> getProductsByName(String productName) {
+		ProductList products = null;
+		products = service.path("olympus").path("olympusrest").path("getproductsbyname/" + productName)
+				.accept(MediaType.TEXT_XML).get(ProductList.class);
+		return products.getProducts();
+	}
+	
+	public ArrayList<Product> getLatestProducts(String productType) {
+		ProductList products = null;
+		products = service.path("olympus").path("olympusrest").path("getlatestproducts/" + productType)
+				.accept(MediaType.TEXT_XML).get(ProductList.class);
+		return products.getProducts();
+	}
 	//*********************************************************************************************
 	private String getUriFromContext(ServletContext context) {
 		//TODO Namen des Parameters eintragen.
