@@ -49,20 +49,26 @@ public class Database implements Serializable
 		conn.close();
 	}
 
-	/*public Vector<String> getAllUsers() {
-		Vector<String> vec=new Vector<String>();
+	public User getUser(String name)
+	{
+		User u=null;
 		try
 		{
 			this.Connect();
 			PreparedStatement stmt=null;
-			String select ="select username from users1";
+			String select ="select adress,url,to_Char('YYYY/MM/DD',birthdate),email,passwort,discount from users where username=?";
 			stmt = conn.prepareStatement(select);
-
+			
+			stmt.setString(1, name);
+			
 			ResultSet rs=stmt.executeQuery();
-			while(rs.next())
+			
+			
+			if(rs.next())
 			{
-				vec.add(rs.getString("username"));
+				u= new User(name, rs.getString("adress"),rs.getString("url"),rs.getString("url,to_Char('YYYY/MM/DD',birthdate)"),rs.getString("email"),rs.getString("passwort"),rs.getInt("discount"));
 			}
+			
 
 			this.CloseConnection();
 		}catch(Exception e)
@@ -70,9 +76,9 @@ public class Database implements Serializable
 			e.printStackTrace();
 		}
 
-		return vec;
+		return u;
 	}
-	 */
+
 	public boolean isPasswordCorrect(String name, String passwd) throws SQLException {
 		this.Connect();
 		String selectCount = "SELECT count(*) as cnt FROM users WHERE username=? AND passwort=?";
@@ -100,7 +106,7 @@ public class Database implements Serializable
 		stmt.setString(5, email);
 		stmt.setString(6, pw);
 		stmt.setInt(7, 	0);
-	
+
 
 		stmt.executeUpdate();
 	}
