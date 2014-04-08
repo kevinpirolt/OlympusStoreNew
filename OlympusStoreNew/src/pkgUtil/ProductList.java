@@ -1,11 +1,12 @@
 package pkgUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class ProductList {
+public class ProductList implements Serializable{
 	private ArrayList<Product> products;
 
 	public ArrayList<Product> getProducts() {

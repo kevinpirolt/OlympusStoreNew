@@ -1,11 +1,12 @@
 package pkgUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Product {
+public class Product implements Serializable{
 
 	private int id;
 	private String name;

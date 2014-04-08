@@ -1,6 +1,8 @@
 package pkgUtil.exception;
 
-public class ParameterNotFoundException extends Exception {
+import java.io.Serializable;
+
+public class ParameterNotFoundException extends Exception implements Serializable {
 
 	/**
 	 * 

@@ -1,5 +1,6 @@
 package pkgOlympusRestClient;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
-public class OlympusRestClient {
+public class OlympusRestClient implements Serializable{
 	
 	private String servUri;
 	private ClientConfig config = null;
