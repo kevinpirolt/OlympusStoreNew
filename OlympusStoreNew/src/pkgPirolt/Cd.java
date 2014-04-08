@@ -28,6 +28,17 @@ public class Cd implements Serializable{
 	@ManagedProperty(value="#{olympusRestClient}")
 	private OlympusRestClient olympusRestClient = null;
 	
+	@ManagedProperty(value="#{currentProduct}")
+	private CurrentProduct currentProduct;
+	
+	public CurrentProduct getCurrentProduct() {
+		return currentProduct;
+	}
+
+	public void setCurrentProduct(CurrentProduct currentProduct) {
+		this.currentProduct = currentProduct;
+	}
+
 	public OlympusRestClient getOlympusRestClient() {
 		return olympusRestClient;
 	}
