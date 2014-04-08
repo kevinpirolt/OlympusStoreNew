@@ -108,6 +108,7 @@ public class contentLeft implements Serializable{
 		}
 		
 		if(isCorrect) {
+			//get user
 			this.setVisibilityform("display:none;");
 			this.setVisibilityloggedin("");
 		}
@@ -120,6 +121,7 @@ public class contentLeft implements Serializable{
 		
 		this.setName("");
 		this.setPassword("");
+		this.setUser(null);
 		this.setVisibilityform("");
 		this.setVisibilityloggedin("display:none;");
 		
