@@ -109,7 +109,8 @@ public class contentLeft implements Serializable{
 		}
 		
 		if(isCorrect) {
-			//get user
+			this.user = this.database.getUser(this.name);
+			System.out.println(user.toString());
 			this.setVisibilityform("display:none;");
 			this.setVisibilityloggedin("");
 		}

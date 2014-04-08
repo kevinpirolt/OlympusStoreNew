@@ -77,6 +77,13 @@ public class User {
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", address=" + address + ", picture="
+				+ picture + ", birthdate=" + birthdate + ", email=" + email
+				+ ", password=" + password + ", discount=" + discount + "]";
+	}
 	
 	
 
