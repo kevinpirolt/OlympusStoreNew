@@ -52,7 +52,7 @@ public class Database implements Serializable
 		{
 			this.Connect();
 			PreparedStatement stmt=null;
-			String select ="select adress,url,to_Char(birthdate, 'YYYY/MM/DD'),email,passwort,discount from users where username=?";
+			String select ="select adress,url,to_Char(birthdate, 'YYYY/MM/DD') birthdate,email,passwort,discount from users where username=?";
 			stmt = conn.prepareStatement(select);
 			
 			stmt.setString(1, name);
@@ -62,7 +62,7 @@ public class Database implements Serializable
 			
 			if(rs.next())
 			{
-				u= new User(name, rs.getString("adress"),rs.getString("url"),rs.getString("url,to_Char(birthdate, 'YYYY/MM/DD')"),rs.getString("email"),rs.getString("passwort"),rs.getInt("discount"));
+				u= new User(name, rs.getString("adress"),rs.getString("url"),rs.getString("birthdate"),rs.getString("email"),rs.getString("passwort"),rs.getInt("discount"));
 			}
 			
 
