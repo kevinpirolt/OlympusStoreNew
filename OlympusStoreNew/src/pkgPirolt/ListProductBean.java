@@ -7,15 +7,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import com.sun.istack.internal.logging.Logger;
-
 import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
 import pkgUtil.Product;
 
-@ManagedBean(name="cd")
+@ManagedBean(name="listProductBean")
 @SessionScoped
-public class Cd implements Serializable{
+public class ListProductBean implements Serializable{
 	
 	/**
 	 * 
@@ -49,7 +47,7 @@ public class Cd implements Serializable{
 
 	private ArrayList<Product> products;
 	
-	public Cd() {
+	public ListProductBean() {
 		
 	}
 	

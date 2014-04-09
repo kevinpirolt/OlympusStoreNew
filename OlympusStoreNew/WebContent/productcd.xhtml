@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <f:metadata>
-     <f:event type="preRenderView" listener="#{productCd.selectProduct()}" />
+     <f:event type="preRenderView" listener="#{showProduct.selectProduct()}" />
 </f:metadata>
 <h:head>
 	<title>OlympusStore</title>
@@ -19,18 +19,18 @@
 
 				<div class="row">
 					<div class="media">
-						<a class="pull-left"><img class="media-object" style="width:400px;height:400px;" src="#{productCd.currentProduct.image}" alt="..."/></a>
+						<a class="pull-left"><img class="media-object" style="width:400px;height:400px;" src="#{showProduct.currentProduct.image}" alt="..."/></a>
 						<div class="media-body">
-							<h1 class="media-heading">#{productCd.currentProduct.name}</h1>
-							<h4>Price: #{productCd.currentProduct.price}$</h4>
+							<h1 class="media-heading">#{showProduct.currentProduct.name}</h1>
+							<h4>Price: #{showProduct.currentProduct.price}$</h4>
 							<button type="button" class="btn btn-default">Add to Cart</button>
 							<br/><br/>
-							<h4>Interpret: #{productCd.currentProduct.interpret}</h4>
-							<h4>Genre: #{productCd.currentProduct.genre}</h4>
-							<h4>Release Date: #{productCd.currentProduct.releaseDate}</h4>
+							<h4>Interpret: #{showProduct.currentProduct.interpret}</h4>
+							<h4>Genre: #{showProduct.currentProduct.genre}</h4>
+							<h4>Release Date: #{showProduct.currentProduct.releaseDate}</h4>
 							<br/><br/>
 							<h4>Description:</h4>
-							#{productCd.currentProduct.description}
+							#{showProduct.currentProduct.description}
 						</div>
 					</div>
 				</div>
