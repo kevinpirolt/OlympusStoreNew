@@ -7,8 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import com.sun.istack.internal.logging.Logger;
-
 import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
 import pkgUtil.Product;

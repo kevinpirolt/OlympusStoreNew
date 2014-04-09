@@ -1,5 +1,7 @@
 package pkgPirolt;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -10,8 +12,13 @@ import pkgUtil.Product;
 
 @ManagedBean(name="showProduct")
 @SessionScoped
-public class ShowProduct {
+public class ShowProduct implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Product currentProduct;
 	
 	@ManagedProperty(value="#{listProductBean}")
