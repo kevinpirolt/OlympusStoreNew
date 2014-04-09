@@ -17,14 +17,14 @@
 
 					
 					
-
+			<h:form>
 				<div class="row">
 					<div class="media">
 						<a class="pull-left"><img class="media-object" style="width:400px;height:550px;" src="#{showProduct.currentProduct.image}" alt="#{showProduct.currentProduct.name}"/></a>
 						<div class="media-body">
 							<h1 class="media-heading">#{showProduct.currentProduct.name}</h1>
 							<h4>Price: #{showProduct.currentProduct.price}$</h4>
-							<button type="button" class="btn btn-default">Add to Cart</button>
+							<h:commandButton class="btn btn-default" value="Add to Cart" action="#{showProduct.addItem()}" />
 							<br/><br/>
 							<h4>Publisher: #{showProduct.currentProduct.interpret}</h4>
 							<h4>Genre: #{showProduct.currentProduct.genre}</h4>
@@ -35,6 +35,7 @@
 						</div>
 					</div>
 				</div>
+			</h:form>
 				
 				
 				

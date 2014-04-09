@@ -23,6 +23,17 @@ public class ShowProduct implements Serializable{
 
 	@ManagedProperty(value="#{listProductBean}")
 	private ListProductBean listProductBean;
+	
+	@ManagedProperty(value="#{cart}")
+	private Cart cart;
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	public Product getCurrentProduct() {
 		return currentProduct;
@@ -47,5 +58,9 @@ public class ShowProduct implements Serializable{
 			if(p.getId() == idp)
 				this.currentProduct = p;
 		}
+	}
+	
+	public String addItem() {
+		return cart.addItem(this.currentProduct);
 	}
 }

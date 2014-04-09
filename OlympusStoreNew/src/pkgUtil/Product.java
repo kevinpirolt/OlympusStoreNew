@@ -135,4 +135,13 @@ public class Product implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean equal = false;
+		if(obj instanceof Product)
+			if(((Product)obj).getId() == this.id)
+				equal = true;
+		return equal;
+	}
 }
