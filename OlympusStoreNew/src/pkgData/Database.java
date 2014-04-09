@@ -17,10 +17,6 @@ import javax.sql.DataSource;
 
 public class Database implements Serializable
 {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2948438178157372271L;
 	private DataSource ds=null;
 	private java.sql.Connection conn=null;
@@ -109,6 +105,8 @@ public class Database implements Serializable
 
 
 		stmt.executeUpdate();
+		
+		stmt.execute("commit");
 	}
 
 }

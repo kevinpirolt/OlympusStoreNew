@@ -4,11 +4,14 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+     <f:event type="preRenderView" listener="#{cd.fillProducts()}" />
+</f:metadata>
 <h:head>
 	<title>OlympusStore</title>
 </h:head>
 <h:body>
-
+	<f:event type="preRenderView" listener="#{cd.fillProducts()}" />
 	<ui:composition template="./templates/BasicTemplate.xhtml">
 		<ui:define name="content">
 
@@ -17,6 +20,13 @@
 				<h2>Latest CDs:</h2>
 
 				<div class="row">
+				
+					<ui:repeat var="product" value="#{cd.products}">
+						<div class="col-xs-6 col-md-3">
+							<a href="./productcd.jsf?id=#{product.id}" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" /></a>
+						</div>
+					</ui:repeat>
+				
 					<div class="col-xs-6 col-md-3">
 						<a href="./productcd.jsf" class="thumbnail"> <img src="http://www.okayplayer.com/wp-content/uploads/2014/01/schoolboy-q-oxymoron-deluxe-cover.jpg" alt="..." /></a>
 					</div>
