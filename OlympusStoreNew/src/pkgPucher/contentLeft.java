@@ -103,18 +103,14 @@ public class contentLeft implements Serializable{
 		try {
 			
 			isCorrect = this.database.isPasswordCorrect(this.getName(), this.getPassword());
-			System.out.println("bei isCorrect");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		if(isCorrect) {
-			System.out.println("vor user");
 			this.user = this.database.getUser(this.name);
-			System.out.println("nach user");
 			System.out.println(user.toString());
-			System.out.println("nach display");
 			this.setVisibilityform("display:none;");
 			this.setVisibilityloggedin("");
 		}

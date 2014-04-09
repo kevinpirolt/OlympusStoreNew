@@ -33,6 +33,8 @@ public class signin implements Serializable{
 	private String birthdate = "";
 	private String email = "";
 	private String password = "";
+	
+	private String message = "...";
 
 	public signin() {
 	}
@@ -95,6 +97,14 @@ public class signin implements Serializable{
 		this.password = password;
 	}
 	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
 	//Getter & Setter
 
 	
@@ -108,6 +118,8 @@ public class signin implements Serializable{
 		
 		emailok = this.getEmail().matches("[A-Z0-9._%+-][A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{3}");
 		
+		System.out.println("after checking email: " + emailok);
+		
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/DD");
 		try {
@@ -117,11 +129,21 @@ public class signin implements Serializable{
 			e1.printStackTrace();
 		}
 		
+		System.out.println("after checking date: " + dateok);
+		
 		if(emailok && dateok) {
 			try {
-				
+				System.out.println("vor database createUser");
 				this.database.createUser(this.getName(), this.getAddress(), this.getPicture(), this.getBirthdate(), this.getEmail(), this.getPassword());
-			
+				System.out.println("nach database createUser");
+				this.setMessage("Welcome to the OlympusStore " + this.getName() + "!");
+				
+				this.setName("");
+				this.setAddress("");
+				this.setPicture("");
+				this.setBirthdate("");
+				this.setEmail("");
+				this.setPassword("");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
