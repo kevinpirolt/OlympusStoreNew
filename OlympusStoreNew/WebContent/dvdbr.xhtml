@@ -22,7 +22,7 @@
 				<div class="row">
 					<ui:repeat var="product" value="#{listProductBean.products}">
 						<div class="col-xs-6 col-md-3">
-							<a href="./productdvdbr.jsf?id=#{product.id}" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" /></a>
+							<a href="./productdvdbr.jsf?id=#{product.id}" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" style="width:300px;height:350px;"/></a>
 						</div>
 					</ui:repeat>
 				</div>
