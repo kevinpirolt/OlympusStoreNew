@@ -106,7 +106,8 @@ public class Database implements Serializable
 
 		stmt.executeUpdate();
 		
-		stmt.execute("commit");
+		
+		this.CloseConnection();
 	}
 
 }
