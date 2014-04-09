@@ -16,29 +16,29 @@ public class ProductCd {
 	
 	private Product currentProduct;
 	
-	@ManagedProperty(value="#{cd}")
-	private Cd cd;
+	@ManagedProperty(value="#{listProductBean}")
+	private ListProductBean listProductBean;
 
 	public Product getCurrentProduct() {
 		return currentProduct;
 	}
 
-	public Cd getCd() {
-		return cd;
+	public ListProductBean getCd() {
+		return listProductBean;
 	}
 
 	public void setCurrentProduct(Product currentProduct) {
 		this.currentProduct = currentProduct;
 	}
 
-	public void setCd(Cd cd) {
-		this.cd = cd;
+	public void setCd(ListProductBean cd) {
+		this.listProductBean = cd;
 	}
 	
 	public void selectProduct() {
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		int idp = Integer.parseInt(req.getParameter("id"));
-		for(Product p : cd.getProducts()) {
+		for(Product p : listProductBean.getProducts()) {
 			if(p.getId() == idp)
 				this.currentProduct = p;
 		}

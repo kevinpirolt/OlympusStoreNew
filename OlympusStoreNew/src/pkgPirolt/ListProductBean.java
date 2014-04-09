@@ -13,9 +13,9 @@ import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
 import pkgUtil.Product;
 
-@ManagedBean(name="cd")
+@ManagedBean(name="listProductBean")
 @SessionScoped
-public class Cd implements Serializable{
+public class ListProductBean implements Serializable{
 	
 	/**
 	 * 
@@ -49,7 +49,7 @@ public class Cd implements Serializable{
 
 	private ArrayList<Product> products;
 	
-	public Cd() {
+	public ListProductBean() {
 		
 	}
 	
