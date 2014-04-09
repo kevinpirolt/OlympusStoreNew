@@ -4,6 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+     <f:event type="preRenderView" listener="#{showProduct.selectProduct()}" />
+</f:metadata>
 <h:head>
 	<title>OlympusStore</title>
 </h:head>
@@ -17,18 +20,18 @@
 
 				<div class="row">
 					<div class="media">
-						<a class="pull-left"><img class="media-object" style="width:400px;height:550px;" src="http://free4dll.net84.net/wp-content/uploads/2013/01/Far-Cry-3-PS3.jpg" alt="..."/></a>
+						<a class="pull-left"><img class="media-object" style="width:400px;height:550px;" src="#{showProduct.currentProduct.image}" alt="#{showProduct.currentProduct.name}"/></a>
 						<div class="media-body">
-							<h1 class="media-heading">Far Cry 3</h1>
-							<h4>Price: 45.99$</h4>
+							<h1 class="media-heading">#{showProduct.currentProduct.name}</h1>
+							<h4>Price: #{showProduct.currentProduct.price}$</h4>
 							<button type="button" class="btn btn-default">Add to Cart</button>
 							<br/><br/>
-							<h4>Publisher: Ubisoft</h4>
-							<h4>Genre: First Person Shooter/Action-Adventure</h4>
-							<h4>Release Date: November 29, 2012</h4>
+							<h4>Publisher: #{showProduct.currentProduct.interpret}</h4>
+							<h4>Genre: #{showProduct.currentProduct.genre}</h4>
+							<h4>Release Date: #{showProduct.currentProduct.releaseDate}</h4>
 							<br/><br/>
 							<h4>Description:</h4>
-							the third game of the series
+							#{showProduct.currentProduct.description}
 						</div>
 					</div>
 				</div>

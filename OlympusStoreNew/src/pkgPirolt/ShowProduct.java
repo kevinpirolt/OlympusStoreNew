@@ -20,7 +20,7 @@ public class ShowProduct implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Product currentProduct;
-	
+
 	@ManagedProperty(value="#{listProductBean}")
 	private ListProductBean listProductBean;
 
@@ -28,16 +28,16 @@ public class ShowProduct implements Serializable{
 		return currentProduct;
 	}
 
-	public ListProductBean getCd() {
-		return listProductBean;
-	}
-
 	public void setCurrentProduct(Product currentProduct) {
 		this.currentProduct = currentProduct;
 	}
+	
+	public ListProductBean getListProductBean() {
+		return listProductBean;
+	}
 
-	public void setCd(ListProductBean cd) {
-		this.listProductBean = cd;
+	public void setListProductBean(ListProductBean listProductBean) {
+		this.listProductBean = listProductBean;
 	}
 	
 	public void selectProduct() {

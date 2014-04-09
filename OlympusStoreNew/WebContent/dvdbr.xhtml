@@ -4,6 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+     <f:event type="preRenderView" listener="#{listProductBean.fillProducts('DVDBR')}" />
+</f:metadata>
 <h:head>
 	<title>OlympusStore</title>
 </h:head>
@@ -17,6 +20,11 @@
 				<h2>Latest DVDs and BluRays:</h2>
 
 				<div class="row">
+					<ui:repeat var="product" value="#{listProductBean.products}">
+						<div class="col-xs-6 col-md-3">
+							<a href="./productdvdbr.jsf?id=#{product.id}" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" /></a>
+						</div>
+					</ui:repeat>
 					<div class="col-xs-6 col-md-3">
 						<a href="./productdvdbr.jsf" class="thumbnail"> <img src="https://geizhals.at/p/892589.jpg" alt="..." /></a>
 					</div>
