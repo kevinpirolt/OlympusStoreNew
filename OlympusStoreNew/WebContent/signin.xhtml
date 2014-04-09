@@ -26,13 +26,13 @@
 	<div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="well well-sm">
-          <h:form class="form-horizontal" action="#{signin.createUser()}" method="post">
+          <h:form class="form-horizontal" method="post">
     
             <!-- Name input-->
             <div class="form-group">
               <label class="col-md-3 control-label" for="name">Name</label>
               <div class="col-md-9">
-                <h:inputText id="name" name="name" class="form-control"/>
+                <h:inputText id="name" name="name" class="form-control" value="#{signin.name}"/>
               </div>
             </div>
             
@@ -40,7 +40,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="address">Address</label>
               <div class="col-md-9">
-                <h:inputText id="address" name="address" class="form-control"/>
+                <h:inputText id="address" name="address" class="form-control" value="#{signin.address}"/>
               </div>
             </div>
             
@@ -48,7 +48,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="picture">Profile Picture</label>
               <div class="col-md-9">
-                <h:inputText id="picture" name="picture" class="form-control"/>
+                <h:inputText id="picture" name="picture" class="form-control" value="#{signin.picture}"/>
               </div>
             </div>
             
@@ -56,7 +56,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="birthdate">Birth Date (YYYY/MM/DD)</label>
               <div class="col-md-9">
-                <h:inputText id="birthdate" name="birthdate" class="form-control"/>
+                <h:inputText id="birthdate" name="birthdate" class="form-control" value="#{signin.birthdate}"/>
               </div>
             </div>
     
@@ -64,7 +64,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="email">Your E-mail</label>
               <div class="col-md-9">
-                <h:inputText id="email" name="email" class="form-control"/>
+                <h:inputText id="email" name="email" class="form-control" value="#{signin.email}"/>
               </div>
             </div>
     
@@ -72,14 +72,14 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="password">Your Password</label>
               <div class="col-md-9">
-                <h:inputSecret id="password" name="password" class="form-control"/>
+                <h:inputSecret id="password" name="password" class="form-control" value="#{signin.password}"/>
               </div>
             </div>
     
             <!-- Form actions -->
             <div class="form-group">
               <div class="col-md-12 text-right">
-                <h:commandButton type="submit" value="Sign In" class="btn btn-primary btn-lg"/>
+                <h:commandButton type="submit" value="Create Account" class="btn btn-primary btn-lg" action="#{signin.createUser()}"/>
               </div>
             </div>
           </h:form>

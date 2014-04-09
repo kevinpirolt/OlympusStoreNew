@@ -18,9 +18,9 @@ import pkgData.Database;
 @ManagedBean
 @SessionScoped
 /**
- * Bean for contentLeft.xhtml (in template folder)
+ * Bean for signin.xhtml
  */
-public class signin implements Serializable{
+public class Signin implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -36,7 +36,7 @@ public class signin implements Serializable{
 	
 	private String message = "...";
 
-	public signin() {
+	public Signin() {
 	}
 
 	//Getter & Setter
@@ -111,14 +111,12 @@ public class signin implements Serializable{
 	
 	public String createUser() {
 		
-		System.out.println("in createUser");
+		System.out.println("in createUser: " + this.getBirthdate() + ";" + this.getEmail());
 		
 		boolean dateok = false;
 		boolean emailok = false;
 		
-		emailok = this.getEmail().matches("[A-Z0-9._%+-][A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{3}");
-		
-		System.out.println("after checking email: " + emailok);
+		emailok = this.getEmail().matches("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}");
 		
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/DD");
@@ -129,7 +127,7 @@ public class signin implements Serializable{
 			e1.printStackTrace();
 		}
 		
-		System.out.println("after checking date: " + dateok);
+		this.setMessage("email: " + emailok + "; birthdate: " + dateok);
 		
 		if(emailok && dateok) {
 			try {
@@ -144,6 +142,7 @@ public class signin implements Serializable{
 				this.setBirthdate("");
 				this.setEmail("");
 				this.setPassword("");
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
