@@ -23,7 +23,7 @@
 				
 					<ui:repeat var="product" value="#{cd.products}">
 						<div class="col-xs-6 col-md-3">
-							<a href="./productcd.jsf" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" /></a>
+							<a href="./productcd.jsf?id=#{product.id}" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" /></a>
 						</div>
 					</ui:repeat>
 				

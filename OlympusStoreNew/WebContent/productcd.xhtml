@@ -4,6 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+     <f:event type="preRenderView" listener="#{productCd.selectProduct()}" />
+</f:metadata>
 <h:head>
 	<title>OlympusStore</title>
 </h:head>
@@ -16,18 +19,18 @@
 
 				<div class="row">
 					<div class="media">
-						<a class="pull-left"><img class="media-object" style="width:400px;height:400px;" src="http://www.spin.com/sites/all/files/139793-jay-z-magna-carta-holy-grail-cover-620.jpg" alt="..."/></a>
+						<a class="pull-left"><img class="media-object" style="width:400px;height:400px;" src="#{productCd.currentProduct.image}" alt="..."/></a>
 						<div class="media-body">
-							<h1 class="media-heading">Magna Carta... Holy Grail</h1>
-							<h4>Price: 18.99$</h4>
+							<h1 class="media-heading">#{productCd.currentProduct.name}</h1>
+							<h4>Price: #{productCd.currentProduct.price}$</h4>
 							<button type="button" class="btn btn-default">Add to Cart</button>
 							<br/><br/>
-							<h4>Interpret: JAY-Z</h4>
-							<h4>Genre: HipHop</h4>
-							<h4>Release Date: July 4, 2013</h4>
+							<h4>Interpret: #{productCd.currentProduct.interpret}</h4>
+							<h4>Genre: #{productCd.currentProduct.genre}</h4>
+							<h4>Release Date: #{productCd.currentProduct.releaseDate}</h4>
 							<br/><br/>
 							<h4>Description:</h4>
-							this is another very nice record from JAY-Z
+							#{productCd.currentProduct.description}
 						</div>
 					</div>
 				</div>

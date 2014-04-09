@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
@@ -52,7 +53,7 @@ public class OlympusRestClient implements Serializable{
 		ProductList products = null;
 		products = service.path("olympus").path("olympusrest").path("getlatestproducts/" + productType)
 				.accept(MediaType.TEXT_XML).get(ProductList.class);
-		printProducts(products);
+		//printProducts(products);
 		return products.getProducts();
 	}
 	

@@ -13,7 +13,7 @@ import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
 import pkgUtil.Product;
 
-@ManagedBean
+@ManagedBean(name="cd")
 @SessionScoped
 public class Cd implements Serializable{
 	
