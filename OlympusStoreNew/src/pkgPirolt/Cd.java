@@ -53,12 +53,8 @@ public class Cd implements Serializable{
 		
 	}
 	
-	public void fillProducts() {
-		Logger.getLogger(Cd.class).info("In Fill Products");
-		System.out.println("In Fill Products mit syso");
-		this.products = this.olympusRestClient.getLatestProducts("CD");
-		Logger.getLogger(Cd.class).info("products: " + this.products.size());
-		System.out.println("products: " + this.products.size());
+	public void fillProducts(String pType) {
+		this.products = this.olympusRestClient.getLatestProducts(pType);
 	}
 
 	public Database getDatabase() {
