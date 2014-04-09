@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 
 import pkgData.Database;
 
@@ -98,9 +101,15 @@ public class signin implements Serializable{
 	
 	public String createUser() {
 		
-		boolean dateok = false;
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/DD");
+		System.out.println("in createUser");
 		
+		boolean dateok = false;
+		boolean emailok = false;
+		
+		emailok = this.getEmail().matches("[A-Z0-9._%+-][A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{3}");
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/DD");
 		try {
 			sdf.parse(this.getBirthdate());
 			dateok = true;
@@ -108,7 +117,7 @@ public class signin implements Serializable{
 			e1.printStackTrace();
 		}
 		
-		if(dateok) {
+		if(emailok && dateok) {
 			try {
 				
 				this.database.createUser(this.getName(), this.getAddress(), this.getPicture(), this.getBirthdate(), this.getEmail(), this.getPassword());
