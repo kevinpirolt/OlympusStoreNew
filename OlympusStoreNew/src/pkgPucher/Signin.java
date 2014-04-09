@@ -131,9 +131,7 @@ public class Signin implements Serializable{
 		
 		if(emailok && dateok) {
 			try {
-				System.out.println("vor database createUser: " + this.getName() + ";" + this.getAddress() + ";" + this.getPicture() + ";" + this.getBirthdate() + ";" + this.getEmail() + ";" + this.getPassword());
 				this.database.createUser(this.getName(), this.getAddress(), this.getPicture(), this.getBirthdate(), this.getEmail(), this.getPassword());
-				System.out.println("nach database createUser");
 				this.setMessage("Welcome to the OlympusStore " + this.getName() + "!");
 				
 				this.setName("");
