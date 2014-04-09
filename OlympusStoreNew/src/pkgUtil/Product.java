@@ -1,6 +1,7 @@
 package pkgUtil;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -134,6 +135,11 @@ public class Product implements Serializable{
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public String getReleaseDateFormated() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
+		return sdf.format(releaseDate);
 	}
 
 	@Override

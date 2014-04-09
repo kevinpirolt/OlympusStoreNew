@@ -42,7 +42,16 @@ public class Cart {
 	}
 
 	public ArrayList<CartItem> getItems() {
+		initItems();
 		return items;
+	}
+	
+	public int getItemCount() {
+		initItems();
+		int count = 0;
+		for(CartItem ci : items)
+			count += ci.getQuantety();
+		return count;
 	}
 
 	public void setItems(ArrayList<CartItem> items) {

@@ -8,7 +8,7 @@ public class CartItem {
 	public CartItem(Product item) {
 		super();
 		this.item = item;
-		this.quantety = 0;
+		this.quantety = 1;
 	}
 	
 	public CartItem(Product item, int quantety) {
