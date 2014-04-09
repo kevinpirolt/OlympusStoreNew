@@ -6,13 +6,11 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.sun.jersey.api.core.HttpRequestContext;
-
 import pkgUtil.Product;
 
-@ManagedBean(name="productCd")
+@ManagedBean(name="showProduct")
 @SessionScoped
-public class ProductCd {
+public class ShowProduct {
 	
 	private Product currentProduct;
 	
