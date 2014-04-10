@@ -180,16 +180,6 @@ public class admin implements Serializable{
 				System.out.println(asdf);
 				this.setMessage("Product " + this.getName() + " created!");
 				
-				//-private String name = "";
-				//-private String price = "";
-				//-private String interpret = "";
-				//-private String genre = "";
-				//-private String releasedate = "";
-				//-private String description = "";
-				//-private String image = "";
-				//-private String type = "";
-				//-private String quantity = "";
-				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				this.setMessage(e.getMessage());
