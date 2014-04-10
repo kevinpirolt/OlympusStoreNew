@@ -29,6 +29,27 @@ public class ListProductBean implements Serializable{
 	@ManagedProperty(value="#{currentProduct}")
 	private CurrentProduct currentProduct;
 	
+	@ManagedProperty(value="#{search}")
+	private Search search;
+	
+	private String productShowAdress;
+	
+	public String getProductShowAdress() {
+		return productShowAdress;
+	}
+
+	public void setProductShowAdress(String productShowAdress) {
+		this.productShowAdress = productShowAdress;
+	}
+
+	public Search getSearch() {
+		return search;
+	}
+
+	public void setSearch(Search search) {
+		this.search = search;
+	}
+
 	public CurrentProduct getCurrentProduct() {
 		return currentProduct;
 	}
@@ -53,6 +74,12 @@ public class ListProductBean implements Serializable{
 	
 	public void fillProducts(String pType) {
 		this.products = this.olympusRestClient.getLatestProducts(pType);
+	}
+	
+	public void fillProductsSearch() {
+		System.out.println("in fillProductsSearch");
+		this.products = this.olympusRestClient
+				.getProductsByName(this.search.getSearchString());
 	}
 
 	public Database getDatabase() {

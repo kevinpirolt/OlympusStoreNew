@@ -46,6 +46,12 @@ public class OlympusRestClient implements Serializable{
 		ProductList products = null;
 		products = service.path("olympus").path("olympusrest").path("getproductsbyname/" + productName)
 				.accept(MediaType.TEXT_XML).get(ProductList.class);
+		if(products != null && products.getProducts() != null)
+			System.out.println("Products: " + products.getProducts().size());
+		else if(products == null)
+			System.out.println("ProductList is null");
+		else if(products.getProducts() == null)
+			System.out.println("List of Products is null");
 		return products.getProducts();
 	}
 	
