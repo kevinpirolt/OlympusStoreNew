@@ -116,7 +116,7 @@ public class contentLeft implements Serializable{
 			this.setVisibilityloggedin("");
 		}
 		
-		return "contentLeft.jsf";
+		return "index.jsf";
 		
 	}
 	
@@ -128,7 +128,7 @@ public class contentLeft implements Serializable{
 		this.setVisibilityform("");
 		this.setVisibilityloggedin("display:none;");
 		
-		return "contentLeft.jsf";
+		return "index.jsf";
 		
 	}
 	

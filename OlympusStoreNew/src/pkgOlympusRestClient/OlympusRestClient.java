@@ -53,7 +53,6 @@ public class OlympusRestClient implements Serializable{
 		ProductList products = null;
 		products = service.path("olympus").path("olympusrest").path("getlatestproducts/" + productType)
 				.accept(MediaType.TEXT_XML).get(ProductList.class);
-		//printProducts(products);
 		return products.getProducts();
 	}
 	
