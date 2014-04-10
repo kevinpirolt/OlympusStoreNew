@@ -24,20 +24,7 @@
 				
 					<ui:repeat var="product" value="#{listProductBean.products}">
 						<div class="col-xs-6 col-md-3">
-							<c:choose>
-								<c:when test="#{product.type == 'CD'}">
-									<c:set var="#{listProductBean.productShowAdress}" value="./productcd.jsf?id=#{product.id}" />
-								</c:when>
-								<c:when test="#{product.type == 'GAME'}">
-									<c:set var="#{listProductBean.productShowAdress}" value="./productgame.jsf?id=#{product.id}" />
-								</c:when>
-								<c:when test="#{product.type == 'DVDBR'}">
-								</c:when>
-								<c:otherwise>
-									<c:set var="#{listProductBean.productShowAdress}" value="./productdvdbr.jsf?id=#{product.id}" />
-								</c:otherwise>
-							</c:choose>
-							<a href="#{listProductBean.productShowAdress}" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" /></a>
+							<a href="#{product.showProductSite}" class="thumbnail"> <img src="#{product.image}" alt="#{product.name}" /></a>
 						</div>
 					</ui:repeat>
 				</div>

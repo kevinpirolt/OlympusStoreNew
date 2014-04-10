@@ -141,6 +141,11 @@ public class Product implements Serializable{
 		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
 		return sdf.format(releaseDate);
 	}
+	
+	public String getShowProductSite() {
+		String link = "./product" + this.type + ".jsf?id=" + this.id;
+		return link.toLowerCase();
+	}
 
 	@Override
 	public boolean equals(Object obj) {
