@@ -61,6 +61,13 @@ public class ShowProduct implements Serializable{
 	}
 	
 	public String addItem() {
-		return cart.addItem(this.currentProduct);
+		cart.initCart();
+		System.out.println("------> After initCart() why");
+		String ret = null;
+		if(this.cart.getContentLeft() != null)
+			ret = cart.addItem(this.currentProduct);
+		else
+			ret = "login";
+		return ret;
 	}
 }

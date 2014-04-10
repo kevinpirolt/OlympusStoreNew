@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>OlympusStore</title>
+</h:head>
+<h:body>
+	<ui:composition template="./templates/BasicTemplate.xhtml">
+		<ui:define name="content">
+
+
+
+			<h2>Only Gods may purchase Goods in this store</h2>
+			<h2>Sign In or Register to prove your divinity</h2>
+
+			<h:form class="form-signin" role="form">
+				<h2 class="form-signin-heading">Login</h2>
+				<span>Name:</span>
+				<h:inputText id="name" class="form-control"
+					value="#{contentLeft.name}" />
+				<span>Password:</span>
+				<h:inputSecret id="password" class="form-control"
+					value="#{contentLeft.password}" />
+				<br />
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Login" action="#{contentLeft.checkLogin()}" />
+				<br />
+				<span>Not registered yet?</span>
+				<br />
+				<a href="./signin.jsf"><span>Create an Account!</span></a>
+			</h:form>
+
+
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

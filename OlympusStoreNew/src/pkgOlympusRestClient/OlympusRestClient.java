@@ -46,12 +46,6 @@ public class OlympusRestClient implements Serializable{
 		ProductList products = null;
 		products = service.path("olympus").path("olympusrest").path("getproductsbyname/" + productName)
 				.accept(MediaType.TEXT_XML).get(ProductList.class);
-		if(products != null && products.getProducts() != null)
-			System.out.println("Products: " + products.getProducts().size());
-		else if(products == null)
-			System.out.println("ProductList is null");
-		else if(products.getProducts() == null)
-			System.out.println("List of Products is null");
 		return products.getProducts();
 	}
 	
@@ -61,6 +55,13 @@ public class OlympusRestClient implements Serializable{
 				.accept(MediaType.TEXT_XML).get(ProductList.class);
 		//printProducts(products);
 		return products.getProducts();
+	}
+	
+	public String insertNewProduct(Product insertProduct) {
+		String outcome = null;
+		outcome = service.path("olympus").path("olympusrest").path("insertproduct").
+					type(MediaType.TEXT_XML).post(String.class, insertProduct);
+		return outcome;
 	}
 	
 	//TODO Write Function to insertProduct

@@ -5,14 +5,15 @@
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="oracle.jdbc.OracleDriver"
-		url="jdbc:oracle:thin:@192.168.128.151:1521:ora11g"
+		url="jdbc:oracle:thin:@212.152.179.117:1521:ora11g"
 		username="d5b24"
 		password="d5b24"
 		maxActive="20"
 		maxIdle="30"
 		maxWait="-1"
 	/>
-	
+	<!-- 212.152.179.117 -->
+	<!-- 192.168.128.151 -->
 	<Parameter name="restServer" value="http://localhost:8080/OlympusStoreRest/" override="false" />
 	
 </Context>
