@@ -111,8 +111,6 @@ public class Signin implements Serializable{
 	
 	public String createUser() {
 		
-		System.out.println("in createUser: " + this.getBirthdate() + ";" + this.getEmail());
-		
 		boolean dateok = false;
 		boolean emailok = false;
 		
@@ -124,10 +122,8 @@ public class Signin implements Serializable{
 			sdf.parse(this.getBirthdate());
 			dateok = true;
 		} catch (ParseException e1) {
-			e1.printStackTrace();
+			this.setMessage(e1.getMessage());
 		}
-		
-		this.setMessage("email: " + emailok + "; birthdate: " + dateok);
 		
 		if(emailok && dateok) {
 			try {
@@ -141,12 +137,14 @@ public class Signin implements Serializable{
 				this.setEmail("");
 				this.setPassword("");
 				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				this.setMessage(e.getMessage());
 			}
 			
-		}	
+		}
+		else {
+			this.setMessage("wrong e-mail or birthdate!");
+		}
 		
 		return "signin.jsf";
 		
