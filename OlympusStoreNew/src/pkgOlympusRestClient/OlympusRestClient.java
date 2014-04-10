@@ -63,6 +63,21 @@ public class OlympusRestClient implements Serializable{
 		return outcome;
 	}
 	
+	/**
+	 * This Method updates the quantity of the given Product in SAP and 
+	 * returns an appropriate message.
+	 * @param updateProduct
+	 * The Product to be updated. When creation this Product make sure, 
+	 * that in the Constructor everything but the id and the quantity is null.
+	 * The quantity represents the amount by which the SAP-Product-Quantity should be
+	 * decreased.
+	 * @return
+	 * An appropriate Message.
+	 */
+	public String updateProductQuantity(Product updateProduct) {
+		return "";
+	}
+	
 	//TODO Write Function to insertProduct
 	//*********************************************************************************************
 	private void initComponents() throws ParameterNotFoundException {
