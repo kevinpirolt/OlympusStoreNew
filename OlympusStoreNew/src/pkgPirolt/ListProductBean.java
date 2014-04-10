@@ -77,7 +77,6 @@ public class ListProductBean implements Serializable{
 	}
 	
 	public void fillProductsSearch() {
-		System.out.println("in fillProductsSearch");
 		this.products = this.olympusRestClient
 				.getProductsByName(this.search.getSearchString());
 	}
