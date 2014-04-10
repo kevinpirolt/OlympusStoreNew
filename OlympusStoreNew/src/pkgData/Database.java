@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -12,7 +13,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-@ManagedBean
+import pkgUtil.CartItem;
+
+@ManagedBean(name="database")
 @SessionScoped
 
 public class Database implements Serializable
@@ -108,6 +111,10 @@ public class Database implements Serializable
 		
 		
 		this.CloseConnection();
+	}
+
+	public void insertCartAndCartItems(ArrayList<CartItem> items) {
+		//TODO Stiege mach was
 	}
 
 }

@@ -57,22 +57,6 @@ public class OlympusRestClient implements Serializable{
 		return products.getProducts();
 	}
 	
-	private void printProducts(ProductList products) {
-		for(Product p : products.getProducts()) {
-			System.out.println("New Product-----------------");
-			System.out.println(p.getId());
-			System.out.println(p.getName());
-			System.out.println(p.getPrice());
-			System.out.println(p.getQuantity());
-			System.out.println(p.getInterpret());
-			System.out.println(p.getGenre());
-			System.out.println(p.getType());
-			System.out.println(p.getDescription());
-			System.out.println(p.getReleaseDate());
-			System.out.println(p.getImage());
-			System.out.println("------------------------------");
-		}
-	}
 	//TODO Write Function to insertProduct
 	//*********************************************************************************************
 	private void initComponents() throws ParameterNotFoundException {
