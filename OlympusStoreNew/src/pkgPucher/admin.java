@@ -174,11 +174,20 @@ public class admin implements Serializable{
 		
 		if(dateok && priceok && quantityok) {
 			try {
-				//public Product(float price,String name, int quantity, Date releaseDate, String interpret, String genre, String description, String image, String type) {
 				Product p = new Product(floatprice,this.getName(),intquantity,relDate,this.getInterpret(),this.getGenre(),this.getDescription(),this.getImage(),this.getType());
 				String asdf = this.olympusRestClient.insertNewProduct(p);
-				System.out.println(asdf);
+				
 				this.setMessage("Product " + this.getName() + " created!");
+				
+				this.setName("");
+				this.setPrice("");
+				this.setInterpret("");
+				this.setGenre("");
+				this.setReleasedate("");
+				this.setDescription("");
+				this.setImage("");
+				this.setQuantity("");
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				this.setMessage(e.getMessage());
