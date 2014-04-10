@@ -141,6 +141,8 @@ public class admin implements Serializable{
 	
 	public String createProduct() {
 		
+		System.out.println(this.getPrice() + ";" + this.getName() + ";" + this.getQuantity() + ";" + this.getReleasedate() + ";" + this.getInterpret() + ";" + this.getGenre() + ";" + this.getDescription() + ";" + this.getImage() + ";" + this.getType());
+		
 		boolean dateok = false;
 		boolean priceok = false;
 		boolean quantityok = false;
@@ -170,14 +172,12 @@ public class admin implements Serializable{
 			this.setMessage("quantity is not valid!");
 		}
 		
-		
-		this.setMessage("releasedate: " + dateok);
-		
 		if(dateok && priceok && quantityok) {
 			try {
 				//public Product(float price,String name, int quantity, Date releaseDate, String interpret, String genre, String description, String image, String type) {
 				Product p = new Product(floatprice,this.getName(),intquantity,relDate,this.getInterpret(),this.getGenre(),this.getDescription(),this.getImage(),this.getType());
-				this.olympusRestClient.insertNewProduct(p);
+				String asdf = this.olympusRestClient.insertNewProduct(p);
+				System.out.println(asdf);
 				this.setMessage("Product " + this.getName() + " created!");
 				
 				//-private String name = "";
@@ -197,7 +197,7 @@ public class admin implements Serializable{
 			
 		}	
 		
-		return "signin.jsf";
+		return "admin.jsf";
 		
 	}
 
