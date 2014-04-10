@@ -179,7 +179,6 @@ public class admin implements Serializable{
 				String asdf = this.olympusRestClient.insertNewProduct(p);
 				System.out.println(asdf);
 				this.setMessage("Product " + this.getName() + " created!");
-				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				this.setMessage(e.getMessage());
