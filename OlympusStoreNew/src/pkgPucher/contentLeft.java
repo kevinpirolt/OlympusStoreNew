@@ -10,6 +10,7 @@ import javax.faces.model.SelectItem;
 
 import pkgData.Database;
 import pkgData.User;
+import pkgPirolt.Cart;
 
 @ManagedBean
 @SessionScoped
@@ -22,7 +23,7 @@ public class contentLeft implements Serializable{
 	
 	@ManagedProperty(value="#{database}")
 	private Database database = null;
-	
+
 	private String name = "";
 	private String password = "";
 	private int productsInCart = 0;

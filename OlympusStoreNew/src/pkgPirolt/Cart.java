@@ -35,8 +35,10 @@ public class Cart {
 				this.items.add(new CartItem(p));
 			ret = "checkout";
 		}
-		else
+		else {
 			ret = "login";
+			this.items = null;
+		}
 		return ret;
 	}
 
@@ -81,6 +83,7 @@ public class Cart {
 		System.out.println("CheckUser");
 		if (this.contentLeft.getUser() == null)
 			try {
+				this.items = null;
 				FacesContext.getCurrentInstance().getExternalContext()
 						.redirect("login.jsf");
 			} catch (IOException e) {
