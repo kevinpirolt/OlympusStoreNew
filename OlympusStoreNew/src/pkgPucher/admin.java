@@ -151,7 +151,7 @@ public class admin extends ParentOlympusBean implements Serializable{
 		float floatprice = 0;
 		int intquantity = 0;
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/DD");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		try {
 			relDate = sdf.parse(this.getReleasedate());
 			dateok = true;
