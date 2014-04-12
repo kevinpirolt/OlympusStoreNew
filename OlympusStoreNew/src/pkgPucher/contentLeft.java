@@ -100,6 +100,7 @@ public class contentLeft implements Serializable{
 	public String checkLogin() {
 		
 		boolean isCorrect = false;
+		String redirect = "index.jsf";
 		System.out.println(this.getName() + ";" + this.getPassword());
 		try {
 			
@@ -114,9 +115,11 @@ public class contentLeft implements Serializable{
 			System.out.println(user.toString());
 			this.setVisibilityform("display:none;");
 			this.setVisibilityloggedin("");
+			if(this.user.getName().equals("admin"))
+				redirect = "admin.jsf";
 		}
 		
-		return "index.jsf";
+		return redirect;
 		
 	}
 	

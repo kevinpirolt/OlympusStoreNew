@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
+import pkgPucher.contentLeft;
 import pkgUtil.Product;
 
 @ManagedBean(name="listProductBean")
@@ -31,6 +32,9 @@ public class ListProductBean implements Serializable{
 	
 	@ManagedProperty(value="#{search}")
 	private Search search;
+	
+	@ManagedProperty(value="#{contentLeft}")
+	private contentLeft contentLeft;
 	
 	private String productShowAdress;
 	
@@ -73,10 +77,12 @@ public class ListProductBean implements Serializable{
 	}
 	
 	public void fillProducts(String pType) {
+		checkAdmin();
 		this.products = this.olympusRestClient.getLatestProducts(pType);
 	}
-	
+
 	public void fillProductsSearch() {
+		checkAdmin();
 		this.products = this.olympusRestClient
 				.getProductsByName(this.search.getSearchString());
 	}
@@ -95,5 +101,9 @@ public class ListProductBean implements Serializable{
 
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
+	}
+	
+	private void checkAdmin() {
+		if(this.)
 	}
 }

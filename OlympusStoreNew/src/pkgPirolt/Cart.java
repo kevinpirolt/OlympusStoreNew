@@ -2,6 +2,7 @@ package pkgPirolt;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -9,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import pkgData.Database;
+import pkgOlympusRestClient.OlympusRestClient;
 import pkgPucher.contentLeft;
 import pkgUtil.CartItem;
 import pkgUtil.Product;
@@ -25,9 +27,15 @@ public class Cart {
 	@ManagedProperty(value = "#{contentLeft}")
 	private contentLeft contentLeft;
 
+	@ManagedProperty(value = "#{olympusRestClient}")
+	private OlympusRestClient olympusRestClient;
+
 	public String addItem(Product p) {
 		String ret = null;
 		CartItem toAdd = null;
+		String outcome = this.olympusRestClient
+				.updateProductQuantity(new Product(p.getId(), 1));
+		System.out.println("--------------->" + outcome);
 		if (this.contentLeft.getUser() != null) {
 			if ((toAdd = checkProductAlreadyInCart(p)) != null)
 				toAdd.increaseQuantity();
@@ -121,6 +129,14 @@ public class Cart {
 
 	public void setContentLeft(contentLeft contentLeft) {
 		this.contentLeft = contentLeft;
+	}
+	
+	public OlympusRestClient getOlympusRestClient() {
+		return olympusRestClient;
+	}
+
+	public void setOlympusRestClient(OlympusRestClient olympusRestClient) {
+		this.olympusRestClient = olympusRestClient;
 	}
 
 }
