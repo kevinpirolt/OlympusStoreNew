@@ -12,7 +12,7 @@ import pkgUtil.Product;
 
 @ManagedBean(name="showProduct")
 @SessionScoped
-public class ShowProduct implements Serializable{
+public class ShowProduct extends ParentOlympusBean implements Serializable{
 	
 	/**
 	 * 
@@ -62,12 +62,25 @@ public class ShowProduct implements Serializable{
 	
 	public String addItem() {
 		cart.initCart();
-		System.out.println("------> After initCart() why");
 		String ret = null;
 		if(this.cart.getContentLeft() != null)
 			ret = cart.addItem(this.currentProduct);
 		else
 			ret = "login";
 		return ret;
+	}
+
+	@Override
+	public void onLoad() {
+		if(!this.isAdmin())
+			this.selectProduct();
+		else
+			this.redirectToAdmin();
+	}
+
+	@Override
+	public void onLoad(String type) {
+		// TODO Auto-generated method stub
+		
 	}
 }

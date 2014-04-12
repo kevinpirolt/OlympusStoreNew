@@ -12,32 +12,29 @@ import pkgOlympusRestClient.OlympusRestClient;
 import pkgPucher.contentLeft;
 import pkgUtil.Product;
 
-@ManagedBean(name="listProductBean")
+@ManagedBean(name = "listProductBean")
 @SessionScoped
-public class ListProductBean implements Serializable{
-	
+public class ListProductBean extends ParentOlympusBean implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value="#{database}")
+	@ManagedProperty(value = "#{database}")
 	private Database database = null;
-	
-	@ManagedProperty(value="#{olympusRestClient}")
+
+	@ManagedProperty(value = "#{olympusRestClient}")
 	private OlympusRestClient olympusRestClient = null;
-	
-	@ManagedProperty(value="#{currentProduct}")
+
+	@ManagedProperty(value = "#{currentProduct}")
 	private CurrentProduct currentProduct;
-	
-	@ManagedProperty(value="#{search}")
+
+	@ManagedProperty(value = "#{search}")
 	private Search search;
-	
-	@ManagedProperty(value="#{contentLeft}")
-	private contentLeft contentLeft;
-	
+
 	private String productShowAdress;
-	
+
 	public String getProductShowAdress() {
 		return productShowAdress;
 	}
@@ -71,20 +68,26 @@ public class ListProductBean implements Serializable{
 	}
 
 	private ArrayList<Product> products;
-	
+
 	public ListProductBean() {
-		
+
 	}
-	
+
 	public void fillProducts(String pType) {
-		checkAdmin();
-		this.products = this.olympusRestClient.getLatestProducts(pType);
+		if (!isAdmin()) {
+			this.products = this.olympusRestClient.getLatestProducts(pType);
+		} else {
+			this.redirectToAdmin();
+		}
 	}
 
 	public void fillProductsSearch() {
-		checkAdmin();
-		this.products = this.olympusRestClient
-				.getProductsByName(this.search.getSearchString());
+		if (!isAdmin()) {
+			this.products = this.olympusRestClient
+					.getProductsByName(this.search.getSearchString());
+		} else {
+			this.redirectToAdmin();
+		}
 	}
 
 	public Database getDatabase() {
@@ -102,8 +105,14 @@ public class ListProductBean implements Serializable{
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
-	
-	private void checkAdmin() {
-		if(this.)
+
+	@Override
+	public void onLoad() {
+		this.fillProductsSearch();
+	}
+
+	@Override
+	public void onLoad(String type) {
+		this.fillProducts(type);
 	}
 }

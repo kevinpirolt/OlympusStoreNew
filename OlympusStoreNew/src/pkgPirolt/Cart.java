@@ -1,6 +1,7 @@
 package pkgPirolt;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,15 +18,12 @@ import pkgUtil.Product;
 
 @ManagedBean(name = "cart")
 @SessionScoped
-public class Cart {
+public class Cart extends ParentOlympusBean implements Serializable{
 
 	private ArrayList<CartItem> items;
 
 	@ManagedProperty(value = "#{database}")
 	private Database database;
-
-	@ManagedProperty(value = "#{contentLeft}")
-	private contentLeft contentLeft;
 
 	@ManagedProperty(value = "#{olympusRestClient}")
 	private OlympusRestClient olympusRestClient;
@@ -122,14 +120,6 @@ public class Cart {
 		initItems();
 		return items;
 	}
-
-	public contentLeft getContentLeft() {
-		return contentLeft;
-	}
-
-	public void setContentLeft(contentLeft contentLeft) {
-		this.contentLeft = contentLeft;
-	}
 	
 	public OlympusRestClient getOlympusRestClient() {
 		return olympusRestClient;
@@ -138,5 +128,18 @@ public class Cart {
 	public void setOlympusRestClient(OlympusRestClient olympusRestClient) {
 		this.olympusRestClient = olympusRestClient;
 	}
+
+	@Override
+	public void onLoad() {
+		if(this.isAdmin())
+			this.redirectToAdmin();
+		else if(!this.isLoggedIn())
+			this.reidrectToLogin();
+		else
+			this.initCart();
+	}
+
+	@Override
+	public void onLoad(String type) {}
 
 }

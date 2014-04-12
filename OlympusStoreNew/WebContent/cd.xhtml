@@ -5,13 +5,12 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <f:metadata>
-     <f:event type="preRenderView" listener="#{listProductBean.fillProducts('CD')}" />
+     <f:event type="preRenderView" listener="#{listProductBean.onLoad('CD')}" />
 </f:metadata>
 <h:head>
 	<title>OlympusStore</title>
 </h:head>
 <h:body>
-	<f:event type="preRenderView" listener="#{listProductBean.fillProducts()}" />
 	<ui:composition template="./templates/BasicTemplate.xhtml">
 		<ui:define name="content">
 

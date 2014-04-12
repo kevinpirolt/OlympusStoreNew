@@ -16,6 +16,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 
 import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
+import pkgPirolt.ParentOlympusBean;
 import pkgUtil.Product;
 
 @ManagedBean
@@ -23,7 +24,7 @@ import pkgUtil.Product;
 /**
  * Bean for admin.xhtml
  */
-public class admin implements Serializable{
+public class admin extends ParentOlympusBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -189,7 +190,6 @@ public class admin implements Serializable{
 				this.setQuantity("");
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				this.setMessage(e.getMessage());
 			}
 			
@@ -197,6 +197,26 @@ public class admin implements Serializable{
 		
 		return "admin.jsf";
 		
+	}
+
+	@Override
+	public void onLoad() {
+		if(!this.isAdmin()) {
+			if(!this.isLoggedIn())
+				this.reidrectToLogin();
+			else
+				this.redirectToIndex();
+		}
+	}
+
+	@Override
+	public void onLoad(String type) {
+		if(!this.isAdmin()) {
+			if(!this.isLoggedIn())
+				this.reidrectToLogin();
+			else
+				this.redirectToIndex();
+		}
 	}
 
 	

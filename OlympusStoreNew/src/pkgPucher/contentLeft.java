@@ -12,7 +12,7 @@ import pkgData.Database;
 import pkgData.User;
 import pkgPirolt.Cart;
 
-@ManagedBean
+@ManagedBean(name="contentLeft")
 @SessionScoped
 /**
  * Bean for contentLeft.xhtml (in template folder)
