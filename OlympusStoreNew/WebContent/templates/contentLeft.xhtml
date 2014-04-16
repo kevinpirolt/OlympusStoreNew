@@ -24,7 +24,9 @@
 
      <h:form>
       <h3>Logged In</h3>
-      <img src="#{contentLeft.user.picture}" style="width:150px; height:160px;"/>
+      <a href = "account.jsf">
+      	<img src="#{contentLeft.user.picture}" style="width:150px; height:160px;"/>
+      </a>
 	  <span>#{contentLeft.user.name}</span><br/>
 	  <h:commandButton class="btn btn-lg btn-primary btn-block" value="Logout" action="#{contentLeft.logOut()}"/>
 	 </h:form>

@@ -4,6 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+	<f:event type="preRenderView" listener="#{account.onLoad()}" />
+</f:metadata>
 <h:head>
 	<title>OlympusStore</title>
 </h:head>
@@ -14,75 +17,82 @@
 
 
 
-				<h1>Welcome Thomas Pucher!</h1>
+			<h1>Welcome #{account.contentLeft.user.name}!</h1>
 
-				<h2>Your Account:</h2>
+			<h2>Your Account:</h2>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="well well-sm">
+							<h:form class="form-horizontal" action="" method="post">
 
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-							<div class="well well-sm">
-								<form class="form-horizontal" action="" method="post">
-
-									<!-- Name input-->
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="name">Name</label>
-										<div class="col-md-9">
-											<input id="name" name="name" type="text" placeholder="Your name" class="form-control" />
-										</div>
+								<!-- Name input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="name">Name</label>
+									<div class="col-md-9">
+										<h:inputText class="form-control"
+											value="#{account.contentLeft.user.name}" />
 									</div>
+								</div>
 
-									<!-- Adress input-->
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="address">Address</label>
-										<div class="col-md-9">
-											<input id="address" name="address" type="text" placeholder="Your Address" class="form-control" />
-										</div>
+								<!-- Adress input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="address">Address</label>
+									<div class="col-md-9">
+										<h:inputText class="form-control"
+											value="#{account.contentLeft.user.address}" />
 									</div>
+								</div>
 
-									<!-- Birth Date input-->
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="birthdate">Birth
-											Date</label>
-										<div class="col-md-9">
-											<input id="birthdate" name="birthdate" type="date" placeholder="Birth Date" class="form-control" />
-										</div>
+								<!-- Birth Date input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="birthdate">Birth
+										Date</label>
+									<div class="col-md-9">
+										<h:inputText class="form-control"
+											value="#{account.contentLeft.user.birthdate}" />
 									</div>
+								</div>
 
-									<!-- Email input-->
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="email">Your
-											E-mail</label>
-										<div class="col-md-9">
-											<input id="email" name="email" type="text" placeholder="Your email" class="form-control" />
-										</div>
+								<!-- Email input-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="email">Your
+										E-mail</label>
+									<div class="col-md-9">
+										<h:inputText class="form-control"
+											value="#{account.contentLeft.user.email}" />
 									</div>
+								</div>
 
-									<!-- Password body -->
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="password">Your
-											Password</label>
-										<div class="col-md-9">
-											<input id="password" name="password" type="password" placeholder="Your Password" class="form-control" />
-										</div>
+								<!-- Password body -->
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="password">Your
+										Password</label>
+									<div class="col-md-9">
+										<h:inputSecret class="form-control"
+											value="#{account.contentLeft.user.password}" />
 									</div>
+								</div>
 
-									<!-- Form actions -->
-									<div class="form-group">
-										<div class="col-md-12 text-right">
-											<button type="submit" class="btn btn-primary btn-lg">Edit</button>
-										</div>
+								<!-- Form actions -->
+								<div class="form-group">
+									<div class="col-md-12 text-right">
+										<h:commandButton class="btn btn-primary btn-lg"
+											value="Edit Info" action="#{account.update()}" />
 									</div>
-								</form>
-							</div>
+								</div>
+							</h:form>
 						</div>
 					</div>
 				</div>
+			</div>
 
-
-				<button type="button" class="btn btn-primary btn-lg">Delete
-					this Account</button>
-
+			<h:form>
+				<h:commandButton class="btn btn-primary btn-lg"
+					value="Delete this Account" action="index" />
+				<h:commandButton class="btn btn-primary btn-lg" value="My Orders"
+					action="index" />
+			</h:form>
 
 
 

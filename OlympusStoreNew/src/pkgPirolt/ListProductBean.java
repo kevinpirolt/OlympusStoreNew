@@ -9,7 +9,6 @@ import javax.faces.bean.SessionScoped;
 
 import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
-import pkgPucher.contentLeft;
 import pkgUtil.Product;
 
 @ManagedBean(name = "listProductBean")

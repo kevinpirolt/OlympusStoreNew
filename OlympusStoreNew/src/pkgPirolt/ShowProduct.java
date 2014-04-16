@@ -10,21 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 
 import pkgUtil.Product;
 
-@ManagedBean(name="showProduct")
+@ManagedBean(name = "showProduct")
 @SessionScoped
-public class ShowProduct extends ParentOlympusBean implements Serializable{
-	
+public class ShowProduct extends ParentOlympusBean implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private Product currentProduct;
+	private boolean disabled;
 
-	@ManagedProperty(value="#{listProductBean}")
+	@ManagedProperty(value = "#{listProductBean}")
 	private ListProductBean listProductBean;
-	
-	@ManagedProperty(value="#{cart}")
+
+	@ManagedProperty(value = "#{cart}")
 	private Cart cart;
 
 	public Cart getCart() {
@@ -42,7 +43,7 @@ public class ShowProduct extends ParentOlympusBean implements Serializable{
 	public void setCurrentProduct(Product currentProduct) {
 		this.currentProduct = currentProduct;
 	}
-	
+
 	public ListProductBean getListProductBean() {
 		return listProductBean;
 	}
@@ -50,37 +51,54 @@ public class ShowProduct extends ParentOlympusBean implements Serializable{
 	public void setListProductBean(ListProductBean listProductBean) {
 		this.listProductBean = listProductBean;
 	}
-	
+
+	public boolean getDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
+	}
+
 	public void selectProduct() {
-		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpServletRequest req = (HttpServletRequest) FacesContext
+				.getCurrentInstance().getExternalContext().getRequest();
 		int idp = Integer.parseInt(req.getParameter("id"));
-		for(Product p : listProductBean.getProducts()) {
-			if(p.getId() == idp)
+		for (Product p : listProductBean.getProducts()) {
+			if (p.getId() == idp)
 				this.currentProduct = p;
 		}
 	}
-	
+
 	public String addItem() {
 		cart.initCart();
 		String ret = null;
-		if(this.cart.getContentLeft() != null)
+		if (this.cart.getContentLeft().getUser() != null)
 			ret = cart.addItem(this.currentProduct);
 		else
 			ret = "login";
 		return ret;
 	}
 
+	private void checkQuantity() {
+		if (this.currentProduct.getQuantity() <= 0) {
+			this.setDisabled(true);
+		} else {
+			this.setDisabled(false);
+		}
+	}
+
 	@Override
 	public void onLoad() {
-		if(!this.isAdmin())
-			this.selectProduct();
+		if (!this.isAdmin()) {
+				this.selectProduct();
+				this.checkQuantity();
+		} 
 		else
 			this.redirectToAdmin();
 	}
 
 	@Override
 	public void onLoad(String type) {
-		// TODO Auto-generated method stub
-		
 	}
 }

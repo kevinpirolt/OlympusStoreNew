@@ -2,6 +2,7 @@ package pkgPucher;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,6 +12,7 @@ import javax.faces.model.SelectItem;
 import pkgData.Database;
 import pkgData.User;
 import pkgPirolt.Cart;
+import pkgUtil.CartItem;
 
 @ManagedBean(name="contentLeft")
 @SessionScoped
@@ -23,6 +25,8 @@ public class contentLeft implements Serializable{
 	
 	@ManagedProperty(value="#{database}")
 	private Database database = null;
+	
+	private ArrayList<CartItem> items;
 
 	private String name = "";
 	private String password = "";
@@ -92,6 +96,13 @@ public class contentLeft implements Serializable{
 		this.user = user;
 	}
 
+	public ArrayList<CartItem> getItems() {
+		return items;
+	}
+
+	public void setItems(ArrayList<CartItem> items) {
+		this.items = items;
+	}
 	
 	//Getter & Setter
 
@@ -130,6 +141,7 @@ public class contentLeft implements Serializable{
 		this.setUser(null);
 		this.setVisibilityform("");
 		this.setVisibilityloggedin("display:none;");
+		this.items = null;
 		
 		return "index.jsf";
 		

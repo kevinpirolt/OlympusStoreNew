@@ -24,7 +24,9 @@
 						<div class="media-body">
 							<h1 class="media-heading">#{showProduct.currentProduct.name}</h1>
 							<h4>Price: #{showProduct.currentProduct.price}$</h4>
-							<h:commandButton class="btn btn-default" value="Add to Cart" action="#{showProduct.addItem()}" />
+							<h4>#{showProduct.currentProduct.quantity} left</h4>
+							<h:commandButton disabled="#{showProduct.disabled}" class="btn btn-default"
+														 value="Add to Cart" action="#{showProduct.addItem()}" />
 							<br/><br/>
 							<h4>Publisher: #{showProduct.currentProduct.interpret}</h4>
 							<h4>Genre: #{showProduct.currentProduct.genre}</h4>

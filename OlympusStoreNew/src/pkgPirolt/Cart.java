@@ -3,7 +3,6 @@ package pkgPirolt;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,7 +11,6 @@ import javax.faces.context.FacesContext;
 
 import pkgData.Database;
 import pkgOlympusRestClient.OlympusRestClient;
-import pkgPucher.contentLeft;
 import pkgUtil.CartItem;
 import pkgUtil.Product;
 
@@ -20,7 +18,10 @@ import pkgUtil.Product;
 @SessionScoped
 public class Cart extends ParentOlympusBean implements Serializable{
 
-	private ArrayList<CartItem> items;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@ManagedProperty(value = "#{database}")
 	private Database database;
@@ -31,29 +32,28 @@ public class Cart extends ParentOlympusBean implements Serializable{
 	public String addItem(Product p) {
 		String ret = null;
 		CartItem toAdd = null;
-		String outcome = this.olympusRestClient
+		this.olympusRestClient
 				.updateProductQuantity(new Product(p.getId(), 1));
-		System.out.println("--------------->" + outcome);
 		if (this.contentLeft.getUser() != null) {
 			if ((toAdd = checkProductAlreadyInCart(p)) != null)
 				toAdd.increaseQuantity();
 			else
-				this.items.add(new CartItem(p));
+				this.contentLeft.getItems().add(new CartItem(p));
 			ret = "checkout";
 		}
 		else {
 			ret = "login";
-			this.items = null;
+			this.contentLeft.setItems(null);
 		}
 		return ret;
 	}
 
 	private CartItem checkProductAlreadyInCart(Product p) {
 		initItems();
-		System.out.println("items are: " + this.items);
+		System.out.println("items are: " + this.contentLeft.getItems());
 		System.out.println("Product is: " + p);
 		CartItem inCart = null;
-		for (CartItem ci : items)
+		for (CartItem ci : contentLeft.getItems())
 			if (ci.getItem().equals(p))
 				inCart = ci;
 		return inCart;
@@ -61,7 +61,7 @@ public class Cart extends ParentOlympusBean implements Serializable{
 
 	public float getFullPrice() {
 		float price = 0;
-		for (CartItem ci : items)
+		for (CartItem ci : contentLeft.getItems())
 			price += ci.calculateFullPrice();
 		return price;
 	}
@@ -69,7 +69,7 @@ public class Cart extends ParentOlympusBean implements Serializable{
 	public int getItemCount() {
 		initItems();
 		int count = 0;
-		for (CartItem ci : items)
+		for (CartItem ci : contentLeft.getItems())
 			count += ci.getQuantety();
 		return count;
 	}
@@ -81,15 +81,15 @@ public class Cart extends ParentOlympusBean implements Serializable{
 	}
 
 	public void initItems() {
-		if (this.items == null)
-			this.items = new ArrayList<CartItem>();
+		if (this.contentLeft.getItems() == null)
+			this.contentLeft.setItems(new ArrayList<CartItem>());
 	}
 
 	private void checkUserSignedIn() {
 		System.out.println("CheckUser");
 		if (this.contentLeft.getUser() == null)
 			try {
-				this.items = null;
+				this.contentLeft.setItems(null);
 				FacesContext.getCurrentInstance().getExternalContext()
 						.redirect("login.jsf");
 			} catch (IOException e) {
@@ -98,8 +98,8 @@ public class Cart extends ParentOlympusBean implements Serializable{
 	}
 
 	public String checkOut() {
-		this.database.insertCartAndCartItems(this.items);
-		this.items = null;
+		this.database.insertCartAndCartItems(this.contentLeft.getItems());
+		this.contentLeft.setItems(null);
 		return "index";
 	}
 
@@ -113,12 +113,12 @@ public class Cart extends ParentOlympusBean implements Serializable{
 	}
 
 	public void setItems(ArrayList<CartItem> items) {
-		this.items = items;
+		this.contentLeft.setItems(items);
 	}
 
 	public ArrayList<CartItem> getItems() {
 		initItems();
-		return items;
+		return this.contentLeft.getItems();
 	}
 	
 	public OlympusRestClient getOlympusRestClient() {

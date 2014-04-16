@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+	
+	private int id;
 	private String name;
 	private String address;
 	private String picture;
@@ -13,9 +15,10 @@ public class User implements Serializable{
 	private String password;
 	private int discount;
 	
-	public User(String name, String address, String picture, String birthdate,
+	public User(int id, String name, String address, String picture, String birthdate,
 			String email, String password, int discount) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.picture = picture;
@@ -80,10 +83,18 @@ public class User implements Serializable{
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", address=" + address + ", picture="
+		return "User [id="+id+", name=" + name + ", address=" + address + ", picture="
 				+ picture + ", birthdate=" + birthdate + ", email=" + email
 				+ ", password=" + password + ", discount=" + discount + "]";
 	}
