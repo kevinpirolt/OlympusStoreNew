@@ -42,6 +42,9 @@ public class admin extends ParentOlympusBean implements Serializable{
 	private String quantity = "";
 	
 	private String message = "...";
+	
+	private String searchstring = "";
+	private String searchmessage = "...";
 
 	public admin() {
 	}
@@ -136,6 +139,22 @@ public class admin extends ParentOlympusBean implements Serializable{
 		this.message = message;
 	}
 	
+	public String getSearchstring() {
+		return searchstring;
+	}
+
+	public void setSearchstring(String searchstring) {
+		this.searchstring = searchstring;
+	}
+
+	public String getSearchmessage() {
+		return searchmessage;
+	}
+
+	public void setSearchmessage(String searchmessage) {
+		this.searchmessage = searchmessage;
+	}
+	
 	//Getter & Setter
 
 	
@@ -205,6 +224,14 @@ public class admin extends ParentOlympusBean implements Serializable{
 		
 		return "admin.jsf";
 		
+	}
+	
+	public String searchProducts() {
+		return "admin.jsf";
+	}
+	
+	public String deleteProduct() {
+		return "admin.jsf";
 	}
 
 	@Override

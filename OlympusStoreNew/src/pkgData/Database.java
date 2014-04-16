@@ -117,7 +117,7 @@ public class Database implements Serializable
 
 	public void updateUser(User toUpdate) throws SQLException {
 		this.Connect();
-			String upd = "update users set username=?, adress=?, birthdate=to_date(?, 'yyyy.dd.MM'), "
+			String upd = "update users set username=?, adress=?, birthdate=to_date(?, 'YYYY/MM/DD'), "
 					+ "email=?, passwort=? where u_id = ?";
 			PreparedStatement prs = this.conn.prepareStatement(upd);
 			prs.setString(1, toUpdate.getName());
