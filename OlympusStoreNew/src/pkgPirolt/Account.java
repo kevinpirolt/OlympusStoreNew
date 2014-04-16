@@ -14,15 +14,16 @@ public class Account extends ParentOlympusBean{
 
 	@ManagedProperty(value="#{database}")
 	private Database database;
+	private String message;
 
-	
 	public String update() {
 		
 		System.out.println("------>new User: " + this.contentLeft.getUser());
 		try {
 			this.database.updateUser(this.contentLeft.getUser());
+			this.setMessage("account edited!");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			this.setMessage(e.getMessage());
 		}
 		return "account";
 	}
@@ -33,6 +34,14 @@ public class Account extends ParentOlympusBean{
 
 	public void setDatabase(Database database) {
 		this.database = database;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 	@Override

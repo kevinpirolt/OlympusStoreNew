@@ -125,6 +125,14 @@ public class Signin implements Serializable{
 			this.setMessage(e1.getMessage());
 		}
 		
+		sdf = new SimpleDateFormat("DD.MM.YYYY");
+		try {
+			sdf.parse(this.getBirthdate());
+			dateok = true;
+		} catch (ParseException e2) {
+			this.setMessage(e2.getMessage());
+		}
+		
 		if(emailok && dateok) {
 			try {
 				this.database.createUser(this.getName(), this.getAddress(), this.getPicture(), this.getBirthdate(), this.getEmail(), this.getPassword());
