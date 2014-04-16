@@ -43,6 +43,7 @@ public class OlympusRestClient implements Serializable{
 	}
 	
 	public ArrayList<Product> getProductsByName(String productName) {
+		System.out.println("name des Produkts: " + productName);
 		ProductList products = null;
 		products = service.path("olympus").path("olympusrest").path("getproductsbyname/" + productName)
 				.accept(MediaType.TEXT_XML).get(ProductList.class);
