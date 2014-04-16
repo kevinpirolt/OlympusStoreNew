@@ -28,6 +28,17 @@ public class Account extends ParentOlympusBean{
 		return "account";
 	}
 	
+	public String delete() {
+		System.out.println();
+		try {
+			this.database.deleteUser(this.contentLeft.getUser());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "account";
+	}
+	
 	public Database getDatabase() {
 		return database;
 	}

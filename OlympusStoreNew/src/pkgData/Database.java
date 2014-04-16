@@ -136,4 +136,10 @@ public class Database implements Serializable
 		//TODO Stiege mach was, des san so zu sagen die Bestellungen
 	}
 
+	public void deleteUser(User toDelete) throws SQLException {
+		this.Connect();
+		String delete = "delete from users ";
+		this.CloseConnection();
+	}
+
 }
