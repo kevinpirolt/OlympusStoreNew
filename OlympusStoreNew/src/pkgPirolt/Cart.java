@@ -2,6 +2,7 @@ package pkgPirolt;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
@@ -16,7 +17,7 @@ import pkgUtil.Product;
 
 @ManagedBean(name = "cart")
 @SessionScoped
-public class Cart extends ParentOlympusBean implements Serializable{
+public class Cart extends ParentOlympusBean implements Serializable {
 
 	/**
 	 * 
@@ -32,16 +33,14 @@ public class Cart extends ParentOlympusBean implements Serializable{
 	public String addItem(Product p) {
 		String ret = null;
 		CartItem toAdd = null;
-		this.olympusRestClient
-				.updateProductQuantity(new Product(p.getId(), 1));
+		this.olympusRestClient.updateProductQuantity(new Product(p.getId(), 1));
 		if (this.contentLeft.getUser() != null) {
 			if ((toAdd = checkProductAlreadyInCart(p)) != null)
 				toAdd.increaseQuantity();
 			else
 				this.contentLeft.getItems().add(new CartItem(p));
 			ret = "checkout";
-		}
-		else {
+		} else {
 			ret = "login";
 			this.contentLeft.setItems(null);
 		}
@@ -98,7 +97,19 @@ public class Cart extends ParentOlympusBean implements Serializable{
 	}
 
 	public String checkOut() {
-		this.database.insertCartAndCartItems(this.contentLeft.getItems());
+		try {
+			if (this.contentLeft.getUser().getDiscount() <= 0) {
+				this.database
+						.insertCartAndCartItems(this.contentLeft.getItems(),
+								this.contentLeft.getUser());
+			} else {
+				System.out
+						.println("Need another version of insertCartAndItems");
+			}
+		} catch (SQLException e) {
+			//TODO do something
+			e.printStackTrace();
+		}
 		this.contentLeft.setItems(null);
 		return "index";
 	}
@@ -120,7 +131,7 @@ public class Cart extends ParentOlympusBean implements Serializable{
 		initItems();
 		return this.contentLeft.getItems();
 	}
-	
+
 	public OlympusRestClient getOlympusRestClient() {
 		return olympusRestClient;
 	}
@@ -131,15 +142,16 @@ public class Cart extends ParentOlympusBean implements Serializable{
 
 	@Override
 	public void onLoad() {
-		if(this.isAdmin())
+		if (this.isAdmin())
 			this.redirectToAdmin();
-		else if(!this.isLoggedIn())
+		else if (!this.isLoggedIn())
 			this.reidrectToLogin();
 		else
 			this.initCart();
 	}
 
 	@Override
-	public void onLoad(String type) {}
+	public void onLoad(String type) {
+	}
 
 }

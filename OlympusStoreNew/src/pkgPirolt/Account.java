@@ -33,10 +33,9 @@ public class Account extends ParentOlympusBean{
 		try {
 			this.database.deleteUser(this.contentLeft.getUser());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "account";
+		return this.contentLeft.logOut();
 	}
 	
 	public Database getDatabase() {
