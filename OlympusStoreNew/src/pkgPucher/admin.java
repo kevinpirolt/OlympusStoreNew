@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 
@@ -31,6 +32,8 @@ public class admin extends ParentOlympusBean implements Serializable{
 	@ManagedProperty(value="#{olympusRestClient}")
 	private OlympusRestClient olympusRestClient = null;
 	
+	private String search;
+
 	private String name = "";
 	private String price = "";
 	private String interpret = "";
@@ -155,6 +158,14 @@ public class admin extends ParentOlympusBean implements Serializable{
 		this.searchmessage = searchmessage;
 	}
 	
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 	//Getter & Setter
 
 	
@@ -226,8 +237,15 @@ public class admin extends ParentOlympusBean implements Serializable{
 		
 	}
 	
-	public String searchProducts() {
-		return "admin.jsf";
+	public void searchProductsOnClick() {
+		this.searchProducts();
+	}
+	
+	public ArrayList<Product> searchProducts() {
+		ArrayList<Product> products = this.olympusRestClient.getProductsByName(this.search);
+		if(products == null)
+			this.searchmessage = "Sorry something went wrong";
+		return products;
 	}
 	
 	public String deleteProduct() {
