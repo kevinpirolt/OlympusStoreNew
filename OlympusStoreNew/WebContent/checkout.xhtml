@@ -35,12 +35,14 @@
 				<br/>
 				<hr style="border-top:5px double black;"/>
 
-				<h2>Total: #{cart.getFullPrice()}$</h2>
+				<h2>Total: #{cart.getPriceWith2Comma()}$</h2>
+				<h2>Price with Discount: #{cart.getDPriceWith2Comma()}$</h2>
 
 				<h:form class="form-horizontal"  method="post">
 					<div class="form-group">
 						<div class="col-md-12">
 							<h:commandButton value="Check Out" action="#{cart.checkOut()}" class="btn btn-primary" />
+							<h:commandButton value="Check Out with Discount" action="#{cart.checkOutWithDiscount()}" class="btn btn-primary" />
 						</div>
 					</div>
 				</h:form>

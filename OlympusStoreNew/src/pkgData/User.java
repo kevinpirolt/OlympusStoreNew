@@ -91,6 +91,12 @@ public class User implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public float getDiscountValue() {
+		System.out.println("------->discount: " + this.discount);
+		System.out.println("------->100-discount: " + (100.00f - this.discount));
+		return (float)((100.00f-(float)this.discount)/100.00f);
+	}
 
 	@Override
 	public String toString() {

@@ -67,9 +67,16 @@ public class Database implements Serializable
 			
 			if(rs.next())
 			{
-				System.out.println("<<<<<<<<<<<<<Jez nur getString: " + rs.getString("u_id"));
-				u= new User(Integer.parseInt(rs.getString("u_id")), name, rs.getString("adress"),rs.getString("url"),
-						rs.getString("birthdate"),rs.getString("email"),rs.getString("passwort"),rs.getInt("discount"));
+				int id = Integer.parseInt(rs.getString("u_id"));
+				String address = rs.getString("adress");
+				String url = rs.getString("url");
+				String birthdate = rs.getString("birthdate");
+				String email = rs.getString("email");
+				String password = rs.getString("passwort");
+				int discount = rs.getInt("discount");
+				System.out.println("------> discount: " + discount);
+				System.out.println("String discount: " + rs.getString("discount"));
+				u= new User(id,name,address, url, birthdate, email, password, discount);
 			}
 			
 			System.out.println("-------->USER FROM DATABASE: " + u);
@@ -145,6 +152,26 @@ public class Database implements Serializable
 		this.CloseConnection();
 	}
 	
+	public void insertCartAndCartItems(ArrayList<CartItem> items, User insertUser, int discount) throws SQLException {
+		this.Connect();
+		int newOrderId = this.getLatestOrderId();
+		if(newOrderId < 0)
+			throw new SQLException("OrderId error occured");
+		this.insertOrder(newOrderId, insertUser.getId(), discount);
+		this.insertOrderItems(newOrderId, items);
+		this.resetDiscount(insertUser);
+		this.CloseConnection();
+	}
+	
+	private void resetDiscount(User user) throws SQLException {
+		System.out.println("-------------------------------> in resetDiscount: " + user.getId());
+		String update = "update users set discount = 0 where u_id = ?";
+		PreparedStatement prs = this.conn.prepareStatement(update);
+		prs.setInt(1, user.getId());
+		if(prs.executeUpdate() <= 0)
+			throw new SQLException("We could not apply your discount");
+	}
+
 	private void insertOrderItems(int newOrderId, ArrayList<CartItem> items) throws SQLException {
 		String insert = "insert into orderitem values(?,?,?,?,?)";
 		PreparedStatement prs = this.conn.prepareStatement(insert);

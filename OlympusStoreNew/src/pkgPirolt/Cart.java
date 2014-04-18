@@ -3,6 +3,7 @@ package pkgPirolt;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
@@ -57,12 +58,28 @@ public class Cart extends ParentOlympusBean implements Serializable {
 				inCart = ci;
 		return inCart;
 	}
+	
+	public String getPriceWith2Comma() {
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(this.getFullPrice());
+	}
+	
+	public String getDPriceWith2Comma() {
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(this.getPriceWithDiscount());
+	}
 
 	public float getFullPrice() {
 		float price = 0;
 		for (CartItem ci : contentLeft.getItems())
 			price += ci.calculateFullPrice();
 		return price;
+	}
+	
+	public float getPriceWithDiscount() {
+		float price = this.getFullPrice();
+		float discountPrice = price * this.contentLeft.getUser().getDiscountValue();
+		return discountPrice;
 	}
 
 	public int getItemCount() {
@@ -98,19 +115,26 @@ public class Cart extends ParentOlympusBean implements Serializable {
 
 	public String checkOut() {
 		try {
-			if (this.contentLeft.getUser().getDiscount() <= 0) {
 				this.database
 						.insertCartAndCartItems(this.contentLeft.getItems(),
 								this.contentLeft.getUser());
-			} else {
-				System.out
-						.println("Need another version of insertCartAndItems");
-			}
+				this.contentLeft.setItems(null);
 		} catch (SQLException e) {
-			//TODO do something
 			e.printStackTrace();
 		}
 		this.contentLeft.setItems(null);
+		return "index";
+	}
+	
+	public String checkOutWithDiscount() {
+		try {
+			this.database.insertCartAndCartItems(this.contentLeft.getItems(), 
+					this.contentLeft.getUser(), this.contentLeft.getUser().getDiscount());
+			this.contentLeft.getUser().setDiscount(0);
+			this.contentLeft.setItems(null);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return "index";
 	}
 
