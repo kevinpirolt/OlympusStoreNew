@@ -154,11 +154,13 @@ public class Database implements Serializable
 			prs.setString(3, ci.getItem().getName());
 			prs.setFloat(4, ci.getItem().getPrice());
 			prs.setInt(5, ci.getQuantety());
+			if(prs.executeUpdate() <= 0)
+				throw new SQLException("Could not insert item");
 		}
 	}
 
 	private void insertOrder(int o_id, int u_id) throws SQLException {
-		String insert = "insert into orders(o_id,datum,u_id) values(?,to_date(?,'DDMMYYYY'),?)";
+		String insert = "insert into orders(o_id,datum,user_id) values(?,to_date(?,'DDMMYYYY'),?)";
 		String date = this.getCurrentDateAsString();
 		PreparedStatement prs = this.conn.prepareStatement(insert);
 		prs.setInt(1, o_id);
