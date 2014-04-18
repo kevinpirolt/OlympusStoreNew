@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
+import org.apache.catalina.deploy.ErrorPage;
+
 import pkgPucher.contentLeft;
 
 public abstract class ParentOlympusBean {
@@ -35,7 +37,6 @@ public abstract class ParentOlympusBean {
 			.redirect("admin.jsf");
 		} catch (IOException e) {
 			//TODO redirect to error side
-			e.printStackTrace();
 		}
 	}
 	
@@ -45,7 +46,6 @@ public abstract class ParentOlympusBean {
 			.redirect("index.jsf");
 		} catch (IOException e) {
 			// TODO redirect to error side
-			e.printStackTrace();
 		}
 	}
 	
@@ -55,7 +55,6 @@ public abstract class ParentOlympusBean {
 			.redirect("login.jsf");
 		} catch (IOException e) {
 			// TODO redirect to error side
-			e.printStackTrace();
 		}
 	}
 	
