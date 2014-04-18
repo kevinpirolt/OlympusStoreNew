@@ -16,6 +16,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import pkgUtil.CartItem;
+import pkgUtil.Order;
+import pkgUtil.OrderItem;
 
 @ManagedBean(name="database")
 @SessionScoped
@@ -235,6 +237,43 @@ public class Database implements Serializable
 		if(deleted <= 0)
 			throw new SQLException("User could not be deleted");
 		this.CloseConnection();
+	}
+	
+	public ArrayList<Order> getOrders(User user) throws SQLException {
+		ArrayList<Order> orders = new ArrayList<Order>();
+		this.Connect();
+		String select = "select * from orders where user_id = ?";
+		PreparedStatement prs = this.conn.prepareStatement(select);
+		prs.setInt(1, user.getId());
+		ResultSet rs = prs.executeQuery();
+		while(rs.next()) {
+			int oId = rs.getInt(1);
+			Date date = rs.getDate(2);
+			int discount = rs.getInt(4);
+			orders.add(new Order(oId, date, discount));
+		}
+		for(Order o : orders) {
+			o.setItems(this.getOrderItems(o));
+		}
+		
+		this.CloseConnection();
+		return orders;
+	}
+
+	private ArrayList<OrderItem> getOrderItems(Order order) throws SQLException {
+		ArrayList<OrderItem> items = new ArrayList<OrderItem>();
+		String sel = "select i_id, i_name, price, amount from orderitem where o_id = ?";
+		PreparedStatement prs = this.conn.prepareStatement(sel);
+		prs.setInt(1, order.getOrderId());
+		ResultSet rs = prs.executeQuery();
+		while(rs.next()) {
+			int iId = rs.getInt(1);
+			String iName = rs.getString(2);
+			float price = rs.getFloat(3);
+			int amount = rs.getInt(4);
+			items.add(new OrderItem(iId, iName, price, amount));
+		}
+		return items;
 	}
 
 }

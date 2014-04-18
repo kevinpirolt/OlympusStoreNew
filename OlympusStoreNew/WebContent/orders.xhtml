@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+	<f:event type="preRenderView" listener="#{ordersPage.onLoad()}" />
+</f:metadata>
+<h:head>
+	<title>OlympusStore</title>
+</h:head>
+<h:body>
+
+	<ui:composition template="./templates/BasicTemplate.xhtml">
+		<ui:define name="content">
+
+
+
+			<h2>Your Orders:</h2>
+
+			<div class="row">
+				<ui:repeat var="order" value="#{ordersPage.orders}">
+					<h2>Order: #{order.orderId} #{order.orderDate}
+						#{order.getFormattedPrice()}$</h2>
+					<div>
+						<ui:repeat var="item" value="#{order.items}">
+							<h3>#{item.itemName} #{item.price}$ #{item.quantity}</h3>
+						</ui:repeat>
+					</div>
+				</ui:repeat>
+			</div>
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>
