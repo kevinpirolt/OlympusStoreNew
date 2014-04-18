@@ -125,22 +125,20 @@
             <!-- Name input-->
             <div class="form-group">
               <div class="col-md-9">
-                <h:inputText id="name" name="name" class="form-control" value="#{admin.searchstring}">
-                	<f:ajax event="keyup" render="productList" />
+                <h:inputText id="name" name="name" class="form-control" value="#{admin.search}">
+                	<f:ajax event="keyup" />
                 </h:inputText>
               </div>
               <div class="col-md-1">
-                <h:commandButton type="submit" class="btn btn-default" value="Search" action="#{admin.searchProducts()}">
-                	<f:ajax event="click" render="productList" />
-                </h:commandButton>
+                <h:commandButton type="submit" class="btn btn-default" value="Search" action="#{admin.searchProductsOnClick()}" />
               </div>
               <div>
-              	<ui:repeat var="product" value="#{admin.searchedProducts}" id="productList">
-              		<h2>#{product.name}</h2>
-              		<h:commandButton value="Delete" action="#{admin.deleteProduct(product.id)}">
-              			<f:ajax event="click" render="productList" />
-              		</h:commandButton>
+              <h:panelGroup id="productList">
+              	<ui:repeat var="product" value="#{admin.searchedProducts}" >
+              		<h6>#{product.name}</h6>
+              		<h:commandButton value="Delete" action="index" />
               	</ui:repeat>
+              </h:panelGroup>
               </div>
             </div>
           </h:form>

@@ -32,6 +32,16 @@ public class admin extends ParentOlympusBean implements Serializable{
 	@ManagedProperty(value="#{olympusRestClient}")
 	private OlympusRestClient olympusRestClient = null;
 	
+	private ArrayList<Product> searchedProducts;
+	
+	public ArrayList<Product> getSearchedProducts() {
+		return searchedProducts;
+	}
+
+	public void setSearchedProducts(ArrayList<Product> searchedProducts) {
+		this.searchedProducts = searchedProducts;
+	}
+
 	private String search;
 
 	private String name = "";
@@ -237,19 +247,19 @@ public class admin extends ParentOlympusBean implements Serializable{
 		
 	}
 	
-	public void searchProductsOnClick() {
+	public String searchProductsOnClick() {
 		this.searchProducts();
-	}
-	
-	public ArrayList<Product> searchProducts() {
-		ArrayList<Product> products = this.olympusRestClient.getProductsByName(this.search);
-		if(products == null)
-			this.searchmessage = "Sorry something went wrong";
-		return products;
-	}
-	
-	public String deleteProduct() {
 		return "admin.jsf";
+	}
+	
+	public void searchProducts() {
+		System.out.println("-------->our searchstring: " + this.search);
+		this.searchedProducts = this.olympusRestClient.getProductsByName(this.search);
+		if(this.searchedProducts == null)
+			this.searchmessage = "Sorry something went wrong";
+	}
+	
+	public void deleteProduct(Product p) {
 	}
 
 	@Override
