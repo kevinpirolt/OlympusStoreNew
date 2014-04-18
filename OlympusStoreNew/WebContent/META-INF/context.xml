@@ -14,6 +14,6 @@
 	/>
 	<!-- 212.152.179.117 -->
 	<!-- 192.168.128.151 -->
-	<Parameter name="restServer" value="http://25.115.217.77:8080/OlympusStoreRest/" override="false" />
+	<Parameter name="restServer" value="http://localhost:8080/OlympusStoreRest/" override="false" />
 	
 </Context>
