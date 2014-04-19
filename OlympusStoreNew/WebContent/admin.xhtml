@@ -18,7 +18,7 @@
 		
 
 				<blockquote>
-					<h1>Add Products</h1>
+					<h1>Add and Delete Products</h1>
 					<footer>welcome home admin!</footer>
 				</blockquote>
 
@@ -135,10 +135,19 @@
               <div>
               <!--  <h:outputText id="productList" value="#{admin.search}"/>-->
               <h:panelGroup id="productList">
+              <br/><br/><br/>
+              
+              <table class="table col-md-2">
+              
               	<ui:repeat var="product" value="#{admin.searchedProducts}" >
-              		<h6>#{product.name}</h6>
-              		<h:commandButton value="Delete" action="#{admin.deleteProduct(product)}" />
+              	  <tr>
+              	    <td><span>#{product.name}</span></td>
+              	    <td><h:commandButton value="Delete" action="#{admin.deleteProduct(product)}"/></td>
+              	  </tr>
               	</ui:repeat>
+              	
+              </table>
+              
               </h:panelGroup>
               </div>
             </div>
