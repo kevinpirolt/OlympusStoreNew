@@ -43,6 +43,8 @@ public class admin extends ParentOlympusBean implements Serializable{
 	}
 
 	private String search;
+	
+	private int counter = 0;
 
 	private String name = "";
 	private String price = "";
@@ -247,9 +249,14 @@ public class admin extends ParentOlympusBean implements Serializable{
 		
 	}
 	
+	public void test() {
+		this.counter++;
+		System.out.println("Listener called count: " + this.counter);
+	}
+	
 	public String searchProductsOnClick() {
 		this.searchProducts();
-		return "admin.jsf";
+		return "admin";
 	}
 	
 	public void searchProducts() {
@@ -260,6 +267,7 @@ public class admin extends ParentOlympusBean implements Serializable{
 	}
 	
 	public void deleteProduct(Product p) {
+		System.out.println("Delete Product: ");
 	}
 
 	@Override

@@ -63,6 +63,13 @@ public class OlympusRestClient implements Serializable{
 		return outcome;
 	}
 	
+	public String deleteProduct(Product product) {
+		String outcome = null;
+		outcome = service.path("olympus").path("olympusrest").path("deleteproduct").
+				type(MediaType.TEXT_XML).delete(String.class, product);
+		return outcome;
+	}
+	
 	/**
 	 * This Method updates the quantity of the given Product in SAP and 
 	 * returns an appropriate message.
