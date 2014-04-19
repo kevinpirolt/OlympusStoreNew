@@ -266,8 +266,19 @@ public class admin extends ParentOlympusBean implements Serializable{
 			this.searchmessage = "Sorry something went wrong";
 	}
 	
-	public void deleteProduct(Product p) {
-		System.out.println("Delete Product: ");
+	public String deleteProduct(Product p) {
+		System.out.println("Delete Product: " + p.getName());
+		this.searchmessage = this.olympusRestClient.deleteProduct(p);
+		this.deleteLocal(p);
+		return "admin";
+	}
+
+	private void deleteLocal(Product p) {
+		Product x = null;
+		for(Product pi : this.searchedProducts)
+			if(pi.getId() == p.getId())
+				x = pi;
+		this.searchedProducts.remove(x);
 	}
 
 	@Override

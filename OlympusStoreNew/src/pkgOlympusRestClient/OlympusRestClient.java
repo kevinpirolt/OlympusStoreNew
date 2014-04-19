@@ -66,7 +66,7 @@ public class OlympusRestClient implements Serializable{
 	public String deleteProduct(Product product) {
 		String outcome = null;
 		outcome = service.path("olympus").path("olympusrest").path("deleteproduct").
-				type(MediaType.TEXT_XML).delete(String.class, product);
+				type(MediaType.TEXT_XML).put(String.class, product);
 		return outcome;
 	}
 	

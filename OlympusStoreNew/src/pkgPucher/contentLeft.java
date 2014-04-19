@@ -143,7 +143,7 @@ public class contentLeft implements Serializable{
 		this.setVisibilityloggedin("display:none;");
 		this.items = null;
 		
-		return "index.jsf";
+		return "index?faces-redirect=true";
 		
 	}
 	
