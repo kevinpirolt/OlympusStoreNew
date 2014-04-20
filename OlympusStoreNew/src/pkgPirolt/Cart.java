@@ -117,9 +117,12 @@ public class Cart extends ParentOlympusBean implements Serializable {
 		try {
 				this.database
 						.insertCartAndCartItems(this.contentLeft.getItems(),
-								this.contentLeft.getUser());
+								this.contentLeft.getUser(), false);
 				this.contentLeft.setItems(null);
+				this.contentLeft.getUser().increaseDiscount(1);
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		this.contentLeft.setItems(null);
@@ -129,10 +132,12 @@ public class Cart extends ParentOlympusBean implements Serializable {
 	public String checkOutWithDiscount() {
 		try {
 			this.database.insertCartAndCartItems(this.contentLeft.getItems(), 
-					this.contentLeft.getUser(), this.contentLeft.getUser().getDiscount());
+					this.contentLeft.getUser(), true);
 			this.contentLeft.getUser().setDiscount(0);
 			this.contentLeft.setItems(null);
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "index";

@@ -144,6 +144,23 @@ public class Database implements Serializable
 		this.CloseConnection();
 	}
 	
+	 public void insertCartAndCartItems(ArrayList<CartItem> items, User insertUser,boolean discount) throws Exception {
+		  this.Connect();
+		  int newOrderId = this.getLatestOrderId();
+		  if(newOrderId < 0)
+		   throw new SQLException("OrderId error occured");
+		 
+		  if(discount) {
+		   this.insertOrder(newOrderId, insertUser.getId(), insertUser.getDiscount());
+		   this.resetDiscount(insertUser);
+		  }
+		  else
+		   this.insertOrder(newOrderId, insertUser.getId());
+		  
+		  this.insertOrderItems(newOrderId, items);
+		  this.CloseConnection();
+		 }
+	
 	public void insertCartAndCartItems(ArrayList<CartItem> items, User insertUser) throws SQLException {
 		this.Connect();
 		int newOrderId = this.getLatestOrderId();

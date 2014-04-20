@@ -92,6 +92,10 @@ public class User implements Serializable{
 		this.id = id;
 	}
 	
+	public void increaseDiscount(int amount) {
+		this.discount += amount;
+	}
+	
 	public float getDiscountValue() {
 		System.out.println("------->discount: " + this.discount);
 		System.out.println("------->100-discount: " + (100.00f - this.discount));
